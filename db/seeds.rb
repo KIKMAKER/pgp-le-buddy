@@ -1,7 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+# PLEASE DO NOT SEED WITH THIS FILE.
+
+# This file will load the appropriate seed file from the seeds/ directory based
+# on the current environment (Production, Development, or Test). Add your seed
+# actions to those files as appropriate.
+
+puts "Starting database seed..."
+puts "Current environment is: #{Rails.env.downcase}"
+puts ""
+
+load(Rails.root.join( 'db', 'seeds', "#{Rails.env.downcase}.rb"))
