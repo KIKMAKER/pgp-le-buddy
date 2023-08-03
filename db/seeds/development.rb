@@ -5,7 +5,11 @@ puts "Development seed running."
 # Clear existing data from database
 Challenge.destroy_all
 
-# Seed the Kitt Challenges
+# Test user account
+User.create(email: "test@test.com", password: "123456")
+puts "Test user created: test@test.com, 123456"
+
+# Kitt Challenges
 load(Rails.root.join( 'db', 'seeds', 'partials', '_challenges.rb'))
 
 # ------------------------------------------------------------------------------
