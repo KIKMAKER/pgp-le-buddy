@@ -1,2 +1,6 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+<%= current_user.name %>
+<%= current_user.github_name %>
+<%= current_user.email %>
+<%= image_tag current_user.avatar_url %>
