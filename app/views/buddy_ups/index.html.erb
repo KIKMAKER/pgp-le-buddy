@@ -1,0 +1,17 @@
+<h1>BuddyUps#index</h1>
+<p>Find me in app/views/buddy_ups/index.html.erb</p>
+
+<h2>This is the "Marketplace" page for our app.</h2>
+
+<% @buddy_ups.each do |buddy_up| %>
+  <div>
+    <p>Name: <%= buddy_up.name %></p>
+    <p>Description: <%= buddy_up.description %></p>
+    <p>Auto-match? <%= buddy_up.auto_match ? "Yes" : "No" %></p>
+    <p>Status: <%= buddy_up.status %></p>
+    <p>Availability: <%= buddy_up.availability %></p>
+    <p>Number of favourites: <%= buddy_up.favourites %></p>
+    <p>Linked Challenge name: <%= buddy_up.challenge.name %></p>
+    <p>Linked User email: <%= buddy_up.user.email %></p>
+  </div>
+<% end %>
