@@ -1,4 +1,6 @@
-puts "Seeding Challenges from Kitt"
+# These Challenges are referenced in the Development seed, so if you delete any,
+# please also go review the seed to ensure you don't break it.
+
 challenges = []
 challenges << { module: "Ruby", skill: "Programming Basics", name: "Who's your buddy?", url_fragment: "/challenges?path=01-Ruby%2F01-Programming-basics%2F01-Buddy" }
 challenges << { module: "Ruby", skill: "Programming Basics", name: "Experiment Methods", url_fragment: "/challenges?path=01-Ruby%2F01-Programming-basics%2F02-Experiment-methods" }
@@ -156,4 +158,3 @@ challenges << { module: "Rails", skill: "Front-End", name: "Watch List", url_fra
 challenges << { module: "Rails", skill: "Hosting & Image Upload", name: "Rails Frontend Quiz", url_fragment: "/challenges?path=05-Rails%2F05-Rails-MC-with-images%2F01-Rails-frontend-quiz" }
 challenges << { module: "Rails", skill: "Hosting & Image Upload", name: "Watch List w/ Images", url_fragment: "/challenges?path=05-Rails%2F05-Rails-MC-with-images%2F02-Watch-List-Images" }
 Challenge.upsert_all challenges
-puts "#{Challenge.all.count} Challenges added to database."
