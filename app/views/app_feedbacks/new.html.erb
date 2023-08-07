@@ -1,0 +1,8 @@
+<h1>AppFeedbacks#new</h1>
+<p>Find me in app/views/app_feedbacks/new.html.erb</p>
+
+<%= simple_form_for(@app_feedback) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :contents %>
+  <%= f.submit %>
+<% end %>

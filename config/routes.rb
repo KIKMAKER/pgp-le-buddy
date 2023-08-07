@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :challenges, only: %i[index]
+  resources :app_feedbacks
   resources :buddy_ups, only: %i[index]
 end

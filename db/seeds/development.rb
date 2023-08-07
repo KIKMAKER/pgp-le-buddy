@@ -6,9 +6,11 @@ puts "Development seed running."
 puts "Clearing all data from the database..."
 BuddyUp.destroy_all
 Challenge.destroy_all
+AppFeedback.destroy_all
 User.destroy_all
 puts "BuddyUps: #{BuddyUp.all.count}"
 puts "Challenges: #{Challenge.all.count}"
+puts "AppFeeback: #{AppFeedback.all.count}"
 puts "Users: #{User.all.count}"
 puts "...done."
 puts ""
@@ -32,6 +34,11 @@ puts "Creating Challenges..."
 load(Rails.root.join( 'db', 'seeds', 'partials', '_challenges.rb'))
 puts "...done. #{Challenge.all.count} Challenges added to database."
 puts ""
+
+# AppFeedbacks
+puts "Creating AppFeedbacks..."
+load(Rails.root.join( 'db', 'seeds', 'partials', '_app_feedbacks.rb'))
+puts "...done. #{AppFeedback.all.count} AppFeedbacks created."
 
 # BuddyUps
 puts "Creating BuddyUps..."
