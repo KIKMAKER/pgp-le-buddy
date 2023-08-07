@@ -1,0 +1,6 @@
+<h1>Profile#index</h1>
+<p>Find me in app/views/profile/index.html.erb</p>
+<% @profiles.each do |profile| %>
+  <p><%= profile.user.name %></p>
+  <p><%= profile.batch %></p>
+<% end %>
