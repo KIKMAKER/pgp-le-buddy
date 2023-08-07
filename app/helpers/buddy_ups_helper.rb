@@ -1,0 +1,2 @@
+module BuddyUpsHelper
+end

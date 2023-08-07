@@ -24,6 +24,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_04_132444) do
     t.index ["user_id"], name: "index_app_feedbacks_on_user_id"
   end
 
+  create_table "buddy_ups", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "auto_match"
+    t.integer "status"
+    t.text "availability"
+    t.integer "favourites"
+    t.bigint "user_id", null: false
+    t.bigint "challenge_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_buddy_ups_on_challenge_id"
+    t.index ["user_id"], name: "index_buddy_ups_on_user_id"
+  end
+
   create_table "challenges", force: :cascade do |t|
     t.string "module"
     t.string "skill"
@@ -52,4 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_04_132444) do
   end
 
   add_foreign_key "app_feedbacks", "users"
+  add_foreign_key "buddy_ups", "challenges"
+  add_foreign_key "buddy_ups", "users"
 end

@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   resources :challenges, only: %i[index]
   resources :app_feedbacks
+  resources :buddy_ups, only: %i[index]
 end
