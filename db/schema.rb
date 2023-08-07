@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_03_131601) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_04_084813) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buddy_ups", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "auto_match"
+    t.integer "status"
+    t.text "availability"
+    t.integer "favourites"
+    t.bigint "user_id", null: false
+    t.bigint "challenge_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_buddy_ups_on_challenge_id"
+    t.index ["user_id"], name: "index_buddy_ups_on_user_id"
+  end
 
   create_table "challenges", force: :cascade do |t|
     t.string "module"
@@ -41,4 +56,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_131601) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "buddy_ups", "challenges"
+  add_foreign_key "buddy_ups", "users"
 end

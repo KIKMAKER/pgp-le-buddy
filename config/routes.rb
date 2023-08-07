@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :challenges, only: %i[index]
+  resources :buddy_ups, only: %i[index]
 end
