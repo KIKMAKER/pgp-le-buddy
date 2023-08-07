@@ -7,12 +7,14 @@ puts "Clearing all data from the database..."
 BuddyUp.destroy_all
 Challenge.destroy_all
 AppFeedback.destroy_all
+ProfileLanguage.destroy_all
 Profile.destroy_all
 Language.destroy_all
 User.destroy_all
 puts "BuddyUps: #{BuddyUp.all.count}"
 puts "Challenges: #{Challenge.all.count}"
 puts "AppFeeback: #{AppFeedback.all.count}"
+puts "ProfileLanguages: #{ProfileLanguage.all.count}"
 puts "Profiles: #{Profile.all.count}"
 puts "Languages: #{Language.all.count}"
 puts "Users: #{User.all.count}"

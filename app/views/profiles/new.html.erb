@@ -2,6 +2,6 @@
   <%= f.input :bio, placeholder: "Tell us about yourself..." %>
   <%= f.input :batch, placeholder: "1122" %>
   <%= f.input :show_email %>
-  <%= f.association :language, collection: Language.all %>
+  <%= f.association :languages, collection: Language.all %> <%#  we should use tom select here %>
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>
