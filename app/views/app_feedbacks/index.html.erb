@@ -1,0 +1,12 @@
+<h1>AppFeedbacks#index</h1>
+<p>Find me in app/views/app_feedbacks/index.html.erb</p>
+
+<h2>This view should eventually be authorised for only admin users</h2>
+
+<% @app_feedbacks.each do |app_feedback| %>
+  <div>
+    <p>Title: <%= app_feedback.title %></p>
+    <p>Contents: <%= app_feedback.contents %></p>
+    <p>User: <%= app_feedback.user.email %></p>
+  </div>
+<% end %>
