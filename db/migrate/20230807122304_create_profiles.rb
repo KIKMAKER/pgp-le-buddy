@@ -4,7 +4,7 @@ class CreateProfiles < ActiveRecord::Migration[7.0]
       t.references :user, null: false, foreign_key: true
       t.text :bio
       t.integer :batch
-      t.boolean :show_email
+      t.boolean :show_email, default: false
 
       t.timestamps
     end
