@@ -22,10 +22,10 @@ puts ""
 
 # Users
 puts "Creating Persona users..."
-User.create(email: "shane@shane.com", password: "123456")
-User.create(email: "joni@joni.com", password: "123456")
-User.create(email: "mitch@mitch.com", password: "123456")
-User.create(email: "kira@kira.com", password: "123456")
+User.create(email: "shane@shane.com", password: "123456", name: "Shane")
+User.create(email: "joni@joni.com", password: "123456", name: "Joni")
+User.create(email: "mitch@mitch.com", password: "123456", name: "Mitch")
+User.create(email: "kira@kira.com", password: "123456", name: "Kira")
 puts "...done. #{User.all.count - 1} users created."
 puts ""
 
