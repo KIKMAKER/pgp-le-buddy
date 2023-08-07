@@ -5,6 +5,11 @@ puts "Production seed running."
 # Seed the Kitt Challenges
 load(Rails.root.join( 'db', 'seeds', 'partials', '_challenges.rb'))
 
+# Languages
+puts "Creating Languages..."
+load(Rails.root.join( 'db', 'seeds', 'partials', '_languages.rb'))
+puts "...done. #{Language.all.count} Languages added to database."
+puts ""
 # ------------------------------------------------------------------------------
 
 puts "Production seed complete."
