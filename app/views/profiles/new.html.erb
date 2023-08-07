@@ -1,0 +1,7 @@
+<%= simple_form_for @profile do |f| %>
+  <%= f.input :bio, placeholder: "Tell us about yourself..." %>
+  <%= f.input :batch, placeholder: "1122" %>
+  <%= f.input :show_email %>
+  <%= f.association :language, collection: Language.all %>
+  <%= f.button :submit, class: "btn-primary" %>
+<% end %>
