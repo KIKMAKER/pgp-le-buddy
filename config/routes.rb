@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :app_feedbacks
   resources :buddy_ups, only: %i[index]
   resources :profiles, only: %i[index show new create]
+  resources :social_links, only: :create
 end
