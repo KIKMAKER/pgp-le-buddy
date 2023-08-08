@@ -1,0 +1,8 @@
+<h1>Profile#show</h1>
+<p>Find me in app/views/profile/show.html.erb</p>
+<p><%= @profile.user.name %></p>
+<p><%= @profile.bio %></p>
+<p><%= @profile.batch %></p>
+<% @profile.languages.each do |language|%>
+  <p><%= language.name %></p>
+<% end %>

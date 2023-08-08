@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[github]
 
   enum :status, [ :active, :dummy, :away ]
+  has_one :profile
   has_many :social_links
 
   def self.from_omniauth(auth)

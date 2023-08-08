@@ -7,10 +7,16 @@ puts "Clearing all data from the database..."
 BuddyUp.destroy_all
 Challenge.destroy_all
 AppFeedback.destroy_all
+ProfileLanguage.destroy_all
+Profile.destroy_all
+Language.destroy_all
 User.destroy_all
 puts "BuddyUps: #{BuddyUp.all.count}"
 puts "Challenges: #{Challenge.all.count}"
 puts "AppFeeback: #{AppFeedback.all.count}"
+puts "ProfileLanguages: #{ProfileLanguage.all.count}"
+puts "Profiles: #{Profile.all.count}"
+puts "Languages: #{Language.all.count}"
 puts "Users: #{User.all.count}"
 puts "...done."
 puts ""
@@ -27,6 +33,18 @@ User.create(email: "joni@joni.com", password: "123456")
 User.create(email: "mitch@mitch.com", password: "123456")
 User.create(email: "kira@kira.com", password: "123456")
 puts "...done. #{User.all.count - 1} users created."
+puts ""
+
+# Languages
+puts "Creating Languages..."
+load(Rails.root.join( 'db', 'seeds', 'partials', '_languages.rb'))
+puts "...done. #{Language.all.count} Languages added to database."
+puts ""
+
+# Profiles
+puts "Creating Profiles for Users..."
+load(Rails.root.join( 'db', 'seeds', 'partials', '_profiles.rb'))
+puts "...done. #{Profile.all.count} Profiles added to database."
 puts ""
 
 # Kitt Challenges
