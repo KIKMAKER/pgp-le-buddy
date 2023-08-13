@@ -4,6 +4,7 @@ puts "Development seed running."
 # ---------------------- Add your seed code in this block ----------------------
 # Clear existing data from database
 puts "Clearing all data from the database..."
+Request.destroy_all
 BuddyUp.destroy_all
 Challenge.destroy_all
 AppFeedback.destroy_all
@@ -11,6 +12,7 @@ ProfileLanguage.destroy_all
 Profile.destroy_all
 Language.destroy_all
 User.destroy_all
+puts "Requests: #{Request.all.count}"
 puts "BuddyUps: #{BuddyUp.all.count}"
 puts "Challenges: #{Challenge.all.count}"
 puts "AppFeeback: #{AppFeedback.all.count}"
@@ -61,7 +63,18 @@ puts "...done. #{AppFeedback.all.count} AppFeedbacks created."
 # BuddyUps
 puts "Creating BuddyUps..."
 load(Rails.root.join( 'db', 'seeds', 'partials', '_buddy_ups.rb'))
-puts "...done. #{BuddyUp.all.count} BuddyUps added to the database"
+puts "...done. #{BuddyUp.all.count} BuddyUps added to the database."
+puts ""
+
+# Requests
+puts "Creating Requests..."
+BuddyUp.all.each do |buddy_up|
+  request = Request.new(message: "Can I partner with you on this one?")
+  request.buddy_up = buddy_up
+  request.user = User.last
+  request.save
+end
+puts "...done. #{Request.all.count} Requests added to the database."
 puts ""
 # ------------------------------------------------------------------------------
 
