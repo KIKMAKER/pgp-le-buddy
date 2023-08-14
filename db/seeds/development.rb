@@ -59,6 +59,7 @@ puts ""
 puts "Creating AppFeedbacks..."
 load(Rails.root.join( 'db', 'seeds', 'partials', '_app_feedbacks.rb'))
 puts "...done. #{AppFeedback.all.count} AppFeedbacks created."
+puts ""
 
 # BuddyUps
 puts "Creating BuddyUps..."
@@ -68,12 +69,7 @@ puts ""
 
 # Requests
 puts "Creating Requests..."
-BuddyUp.all.each do |buddy_up|
-  request = Request.new(message: "Can I partner with you on this one?")
-  request.buddy_up = buddy_up
-  request.user = User.last
-  request.save
-end
+load(Rails.root.join( 'db', 'seeds', 'partials', '_requests.rb'))
 puts "...done. #{Request.all.count} Requests added to the database."
 puts ""
 # ------------------------------------------------------------------------------
