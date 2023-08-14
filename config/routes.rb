@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :buddy_ups, only: %i[index]
   resources :profiles, only: %i[index show new create]
   resources :social_links, only: :create
+  resources :requests
 end

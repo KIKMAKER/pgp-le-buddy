@@ -8,6 +8,7 @@ class User < ApplicationRecord
   enum :status, [ :active, :dummy, :away ]
   has_one :profile
   has_many :social_links
+  has_many :requests, dependent: :destroy
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
