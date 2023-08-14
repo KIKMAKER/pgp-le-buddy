@@ -14,11 +14,13 @@ class ActiveSupport::TestCase
   include Warden::Test::Helpers
   Warden.test_mode!
 end
-# from le wagon testing lecture won't run on wsl2
-Capybara.register_driver :headless_chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu window-size=1400,900])
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+if ENV['TEST_SETUP'] == "mac"
+  # from le wagon testing lecture won't run on wsl2
+  Capybara.register_driver :headless_chrome do |app|
+    options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu window-size=1400,900])
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  end
+  # # Folder path for screenshots
+  Capybara.save_path = Rails.root.join("tmp/capybara")
+  Capybara.javascript_driver = :headless_chrome
 end
-# # Folder path for screenshots
-Capybara.save_path = Rails.root.join("tmp/capybara")
-Capybara.javascript_driver = :headless_chrome

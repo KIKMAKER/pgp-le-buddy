@@ -1,12 +1,16 @@
 require "test_helper"
 
-if Rails.env == "test"
+if ENV['TEST_SETUP'] == "mac"
+  # here to test whic route you are on will remove once this works on both setups
+  p "<<<<<<<<<<<<<<<<<<<<<<< mac >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
   #Mac test setup
   class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     driven_by :headless_chrome
   end
 
-elsif Rails.env == "wsl2"
+elsif ENV['TEST_SETUP'] == "wsl"
+  # same as above
+  p "<<<<<<<<<<<<<<<<<<<<<<< wsl2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
   # wsl2 test setup using remote selenium
   # chromedriver binary file saved on root of local drive
   # run "/mnt/d/chromedriver --allowed-ips"(where "d" is the drive name the chromedriver was placed) in terminal to start selnium server
