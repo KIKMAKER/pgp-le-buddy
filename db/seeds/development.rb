@@ -79,7 +79,7 @@ puts "Creating Feedbacks..."
 BuddyUp.where(status: :complete).each do |buddy_up|
   feedback = Feedback.new(message: "Thanks, that was great!", work_again: true)
   feedback.buddy_up = buddy_up
-  feedback.user = BuddyUp.requests.first.user
+  feedback.user = buddy_up.requests.first.user
   feedback.save
 end
 puts "...done. #{Feedback.all.count} Feedbacks added to the database."
