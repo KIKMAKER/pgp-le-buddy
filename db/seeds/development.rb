@@ -4,6 +4,8 @@ puts "Development seed running."
 # ---------------------- Add your seed code in this block ----------------------
 # Clear existing data from database
 puts "Clearing all data from the database..."
+Request.destroy_all
+Feedback.destroy_all
 BuddyUp.destroy_all
 Challenge.destroy_all
 AppFeedback.destroy_all
@@ -11,6 +13,7 @@ ProfileLanguage.destroy_all
 Profile.destroy_all
 Language.destroy_all
 User.destroy_all
+puts "Requests: #{Request.all.count}"
 puts "BuddyUps: #{BuddyUp.all.count}"
 puts "Challenges: #{Challenge.all.count}"
 puts "AppFeeback: #{AppFeedback.all.count}"
@@ -57,11 +60,29 @@ puts ""
 puts "Creating AppFeedbacks..."
 load(Rails.root.join( 'db', 'seeds', 'partials', '_app_feedbacks.rb'))
 puts "...done. #{AppFeedback.all.count} AppFeedbacks created."
+puts ""
 
 # BuddyUps
 puts "Creating BuddyUps..."
 load(Rails.root.join( 'db', 'seeds', 'partials', '_buddy_ups.rb'))
-puts "...done. #{BuddyUp.all.count} BuddyUps added to the database"
+puts "...done. #{BuddyUp.all.count} BuddyUps added to the database."
+puts ""
+
+# Requests
+puts "Creating Requests..."
+load(Rails.root.join( 'db', 'seeds', 'partials', '_requests.rb'))
+puts "...done. #{Request.all.count} Requests added to the database."
+puts ""
+
+# Feedbacks
+puts "Creating Feedbacks..."
+BuddyUp.where(status: :complete).each do |buddy_up|
+  feedback = Feedback.new(message: "Thanks, that was great!", work_again: true)
+  feedback.buddy_up = buddy_up
+  feedback.user = buddy_up.requests.first.user
+  feedback.save
+end
+puts "...done. #{Feedback.all.count} Feedbacks added to the database."
 puts ""
 # ------------------------------------------------------------------------------
 

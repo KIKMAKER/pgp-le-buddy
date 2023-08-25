@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_07_145112) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_13_105536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_145112) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "feedbacks", force: :cascade do |t|
+    t.boolean "work_again", null: false
+    t.bigint "buddy_up_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "message"
+    t.index ["buddy_up_id"], name: "index_feedbacks_on_buddy_up_id"
+    t.index ["user_id"], name: "index_feedbacks_on_user_id"
+  end
+
   create_table "languages", force: :cascade do |t|
     t.string "code"
     t.string "name"
@@ -73,6 +84,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_145112) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer "status", null: false
+    t.text "message"
+    t.bigint "buddy_up_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buddy_up_id"], name: "index_requests_on_buddy_up_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
   create_table "social_links", force: :cascade do |t|
@@ -105,8 +127,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_145112) do
   add_foreign_key "app_feedbacks", "users"
   add_foreign_key "buddy_ups", "challenges"
   add_foreign_key "buddy_ups", "users"
+  add_foreign_key "feedbacks", "buddy_ups"
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "profile_languages", "languages"
   add_foreign_key "profile_languages", "profiles"
   add_foreign_key "profiles", "users"
+  add_foreign_key "requests", "buddy_ups"
+  add_foreign_key "requests", "users"
   add_foreign_key "social_links", "users"
 end
