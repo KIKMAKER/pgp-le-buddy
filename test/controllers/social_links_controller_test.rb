@@ -2,6 +2,6 @@ require "test_helper"
 
 class SocialLinksControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
-  #   assert true
+    # assert true
   # end
 end
