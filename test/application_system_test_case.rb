@@ -1,11 +1,11 @@
 require "test_helper"
 
 if ENV['TEST_SETUP'] == "mac"
-  # here to test whic route you are on will remove once this works on both setups
+  # here to test which route you are on will remove once this works on both setups
   p "<<<<<<<<<<<<<<<<<<<<<<< mac >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
   #Mac test setup
   class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-    driven_by :headless_chrome
+    driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
   end
 
 elsif ENV['TEST_SETUP'] == "wsl"
