@@ -37,7 +37,7 @@ improvements, or report abuse.
 - PostgreSQL
 - CSS is handcrafted
 
-### Contributions
+## Contributions
 
 To join the team, get in touch with [Kiki](https://github.com/KIKMAKER) to be
 added as a contributor to the projects. No pull requests will be accepted from
@@ -60,7 +60,7 @@ thorough descriptions, screenshots, etc.
 **Do not** merge your own pull request – rather request a review from one of the
 other collaborators on the repository.
 
-### Setup
+## Setup
 
 You need PostgreSQL and rbenv installed on your local machine. You can follow the
 [le wagon setup](https://github.com/lewagon/setup) instructions to make sure
@@ -75,7 +75,7 @@ install it with ```rbenv install 3.2.0```.
 
 Run the server in development with ```dev``` (or ```bin/dev```).
 
-### Testing
+## Testing
 
 Testing will be done with the [default Rails systems of MiniTest and
 Capybara](https://guides.rubyonrails.org/testing.html).
@@ -87,6 +87,8 @@ request.
 
 To run the tests there is an environment variable required in your .env file,
 so please make sure that is up to date as per the template in the Slack canvas.
+
+### Running the tests
 
 Run integration tests with ```rails test```
 
