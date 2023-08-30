@@ -89,5 +89,7 @@ To run the tests there is an environment variable required in your .env file,
 so please make sure that is up to date as per the template in the Slack canvas.
 
 Run integration tests with ```rails test```
+
 Run system tests only with ```rails test:system```
-Run both unit ans tustem tests with: ```rails test:all```
+
+Run both unit and system tests with: ```rails test:all```
