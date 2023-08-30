@@ -1,24 +1,90 @@
-# README
+# le buddy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+*le buddy* is a project under the PGP (post graduate projects) umbrella of [Le
+Wagon Cape Town](https://www.lewagon.com/cape-town), the first one in fact!
 
-Things you may want to cover:
+It will be built in public by a rotating team of *le wagon Cape Town* alumni who
+offer their free time to learn and build a project that will be published and
+used in the real world.
 
-* Ruby version
+## What is *le buddy*?
 
-* System dependencies
+*le buddy* is a platform for *le wagon* alumni to re-do the bootcamp challenges.
+Sign up and find a buddy amongst the alumni to complete the challenges!
 
-* Configuration
+### Features planned for version 1
 
-* Database creation
+- Sign up using Github.
+- Create a profile to tell us more about yourself and your goals.
+- Browse *buddy ups* posted by other users and join them to participate in
+completing the challenge(s).
+- Create your own *buddy ups* to get others to join you in completing the
+challenge of your choice.
+- Provide private feedback to your buddy after challenge completion.
+- Provide private feedback to the app maintainers to report bugs, suggest
+improvements, or report abuse.
 
-* Database initialization
+### Features planned for version 2
 
-* How to run the test suite
+- Chat with your buddies on a challenge.
+- See the challenge instructions inside *le buddy* to avoid having to use Kitt.
+- Rake your challenges and see the results in *le buddy*.
 
-* Services (job queues, cache servers, search engines, etc.)
+### The tech behind *le buddy*
 
-* Deployment instructions
+- Ruby (v 3.2.0) on Rails (v 7.0.6)
+- Webpack
+- PostgreSQL
+- CSS is handcrafted
 
-* ...
+### Contributions
+
+To join the team, get in touch with [Kiki](https://github.com/KIKMAKER) to be
+added as a contributor to the projects. No pull requests will be accepted from
+outside the nominated team.
+
+Once you are a contributor you'll have access to the Trello board to grab tickets
+and complete them. A drawing of the database schema is
+[available on Kitt](https://kitt.lewagon.com/db/105325).
+
+We work by means of branches and pull requests – never push to the master branch
+from development.
+
+- Assign a task to yourself on Trello.
+- Move it to the Doing list of that particular project.
+- Create a branch and code away until done.
+- Merge master into your branch and resolve merge conflicts.
+- Push your branch to GitHub and create a Pull Request – make it a good one with
+thorough descriptions, screenshots, etc.
+
+**Do not** merge your own pull request – rather request a review from one of the
+other collaborators on the repository.
+
+### Setup
+
+You need PostgreSQL and rbenv installed on your local machine. You can follow the
+[le wagon setup](https://github.com/lewagon/setup) instructions to make sure
+you have all the necessary components.
+
+1. Clone this repository.
+2. Make sure you have Ruby v3.2.0 installed with ```rbenv versions```. If not,
+install it with ```rbenv install 3.2.0```.
+3. Create an ```.env``` file and populate it with the values in the Slack canvas.
+4. Run ```bundle install``` and ```yarn install```
+5. Set up the database with ```rails db:drop db:create db:seed db:migrate```
+
+Run the server in development with ```dev``` (or ```bin/dev```).
+
+### Testing
+
+Testing will be done with the [default Rails systems of MiniTest and
+Capybara](https://guides.rubyonrails.org/testing.html).
+You are responsible for writing tests of all the functionality you add.
+
+There is no CI workflow so it is the responsibility of each developer to run
+the full test suite locally (and they must all pass!) before submitting a pull
+request.
+
+Run integration tests with ```rails test```
+Run system tests only with ```rails test:system```
+Run both unit ans tustem tests with: ```rails test:all```
