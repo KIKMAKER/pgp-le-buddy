@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_13_105536) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_141411) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,10 +18,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_105536) do
     t.string "title"
     t.text "contents"
     t.datetime "datetime"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_app_feedbacks_on_user_id"
+    t.bigint "profile_id"
+    t.index ["profile_id"], name: "index_app_feedbacks_on_profile_id"
   end
 
   create_table "buddy_ups", force: :cascade do |t|
@@ -31,12 +31,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_105536) do
     t.integer "status"
     t.text "availability"
     t.integer "favourites"
-    t.bigint "user_id", null: false
     t.bigint "challenge_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "profile_id"
     t.index ["challenge_id"], name: "index_buddy_ups_on_challenge_id"
-    t.index ["user_id"], name: "index_buddy_ups_on_user_id"
+    t.index ["profile_id"], name: "index_buddy_ups_on_profile_id"
   end
 
   create_table "challenges", force: :cascade do |t|
@@ -51,12 +51,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_105536) do
   create_table "feedbacks", force: :cascade do |t|
     t.boolean "work_again", null: false
     t.bigint "buddy_up_id", null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "message"
+    t.bigint "profile_id"
     t.index ["buddy_up_id"], name: "index_feedbacks_on_buddy_up_id"
-    t.index ["user_id"], name: "index_feedbacks_on_user_id"
+    t.index ["profile_id"], name: "index_feedbacks_on_profile_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -90,11 +90,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_105536) do
     t.integer "status", null: false
     t.text "message"
     t.bigint "buddy_up_id", null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "profile_id"
     t.index ["buddy_up_id"], name: "index_requests_on_buddy_up_id"
-    t.index ["user_id"], name: "index_requests_on_user_id"
+    t.index ["profile_id"], name: "index_requests_on_profile_id"
   end
 
   create_table "social_links", force: :cascade do |t|
@@ -124,15 +124,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_105536) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "app_feedbacks", "users"
+  add_foreign_key "app_feedbacks", "profiles"
   add_foreign_key "buddy_ups", "challenges"
-  add_foreign_key "buddy_ups", "users"
+  add_foreign_key "buddy_ups", "profiles"
   add_foreign_key "feedbacks", "buddy_ups"
-  add_foreign_key "feedbacks", "users"
+  add_foreign_key "feedbacks", "profiles"
   add_foreign_key "profile_languages", "languages"
   add_foreign_key "profile_languages", "profiles"
   add_foreign_key "profiles", "users"
   add_foreign_key "requests", "buddy_ups"
-  add_foreign_key "requests", "users"
+  add_foreign_key "requests", "profiles"
   add_foreign_key "social_links", "users"
 end
