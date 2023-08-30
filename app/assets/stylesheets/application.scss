@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+// Fonts
+@import "fonts";
+
+// CSS partials
+@import "components/index";
+@import "pages/index";
+
+// Application-wide CSS
+ body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', Times, Arial, sans-serif;
+ }
+
+ p {
+  font-weight: light;
+ }
