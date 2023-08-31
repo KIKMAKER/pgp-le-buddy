@@ -1,0 +1,55 @@
+<nav class="navbar is-link" data-controller="navbar">
+  <div class="navbar-brand">
+    <%= link_to root_path, class: "navbar-item" do %>
+      <%= image_tag "lebuddy.png" %>
+      <strong class="is-size-4 pl-2">le buddy</strong>
+    <% end %>
+
+    <a role="button" class="navbar-burger" data-navbar-target="burger" data-action="navbar#toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+
+  <navbar-menu class="navbar-menu" data-navbar-target="menu">
+      <div class="navbar-start">
+        <% if user_signed_in? %>
+          <%= link_to "Marketplace", "#", class: "navbar-item" %>
+          <%= link_to "Dashboard", "#", class: "navbar-item" %>
+        <% end %>
+        <div class="navbar-item has-dropdown is-hoverable mr-4">
+          <%= link_to "More", "#", class: "navbar-link" %>
+          <div class="navbar-dropdown is-left">
+            <%= link_to "Meet the team", "#", class: "navbar-item" %>
+            <%= link_to "Send us feedback", "#", class: "navbar-item" %>
+            <%= link_to "Terms of use", "#", class: "navbar-item" %>
+            <%= link_to "Privacy policy", "#", class: "navbar-item" %>
+          </div>
+        </div>
+      </div>
+
+    <div class="navbar-end">
+      <% if user_signed_in? %>
+        <div class="navbar-item has-dropdown is-hoverable mr-4">
+          <%= link_to current_user.name, "#", id: "current_user_name", class: "navbar-link" %>
+          <div class="navbar-dropdown is-right">
+            <%= link_to "Profile", "#", class: "navbar-item" %>
+            <%= link_to "Messages", "#", class: "navbar-item" %>
+            <hr class="navbar-divider">
+            <%= link_to "Logout", "#", class: "navbar-item", data: { turbo_method: :delete } %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if not user_signed_in? %>
+        <div class="navbar-item">
+          <div class="buttons">
+            <%= link_to "Sign up", "#", class: "button is-primary" %>
+            <%= link_to "Login", "#", class: "button is-light" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </navbar-menu>
+</nav>
