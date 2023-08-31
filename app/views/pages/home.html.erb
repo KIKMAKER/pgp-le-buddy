@@ -1,8 +1,16 @@
-<h1 test-id="home-page-heading">Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<% if user_signed_in? %>
-  <%= current_user.name %>
-  <%= current_user.github_name %>
-  <%= current_user.email %>
-  <%= image_tag current_user.avatar_url if current_user.avatar_url %>
-<% end %>
+<section class="hero">
+  <div class="hero-body has-text-centered has-text-left-mobile">
+    <p class="title" test-id="home-page-heading">
+      Welcome to <em>le buddy</em>!
+    </p>
+    <p class="subtitle">
+      Buddy Up and tackle your bootcamp challenges again.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <figure class="image is-16by9 is-fullwidth">
+    <%= image_tag "laptops.jpg" %>
+  </figure>
+</section>
