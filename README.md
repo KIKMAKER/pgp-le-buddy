@@ -35,7 +35,7 @@ improvements, or report abuse.
 - Ruby (v 3.2.0) on Rails (v 7.0.6)
 - Webpack
 - PostgreSQL
-- CSS is handcrafted
+- CSS with [Bulma](https://bulma.io)
 
 ## Contributions
 
