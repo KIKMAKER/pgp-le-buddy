@@ -14,6 +14,8 @@
  *= require_self
  */
 
+@import "bulma";
+
 // Fonts
 @import "fonts";
 
@@ -21,13 +23,4 @@
 @import "components/index";
 @import "pages/index";
 
-// Application-wide CSS
- body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', Times, Arial, sans-serif;
- }
-
- p {
-  font-weight: light;
- }
+// Application-wide CSS (will override the above)
