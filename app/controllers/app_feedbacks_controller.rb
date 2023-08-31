@@ -15,7 +15,7 @@ class AppFeedbacksController < ApplicationController
       # This needs some consideration depending on where the link to the new form
       # will appear in the app. Sending them to the marketplace is probably a
       # good option but that part of the app is still in PR at the time of writing
-      # this.
+      # this. Also, add a flash message to confirm it submitted.
       redirect_to root_path
     else
       render new_app_feedback_path, status: :unprocessable_entity
