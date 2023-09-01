@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get "/terms", to: "pages#terms"
   get "/privacy", to: "pages#privacy"
+  get "/team", to: "pages#team"
 
   resources :challenges, only: %i[index]
   resources :app_feedbacks
