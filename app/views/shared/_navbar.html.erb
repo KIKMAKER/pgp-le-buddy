@@ -21,10 +21,13 @@
         <div class="navbar-item has-dropdown is-hoverable mr-4">
           <%= link_to "More", "#", class: "navbar-link" %>
           <div class="navbar-dropdown is-left">
-            <%= link_to "Meet the team", "#", class: "navbar-item" %>
-            <%= link_to "Send us feedback", "#", class: "navbar-item" %>
-            <%= link_to "Terms of use", "#", class: "navbar-item" %>
-            <%= link_to "Privacy policy", "#", class: "navbar-item" %>
+            <%= link_to "Meet the team", team_path, class: "navbar-item" %>
+            <%= link_to "Terms of use", terms_path, class: "navbar-item" %>
+            <%= link_to "Privacy policy", privacy_path, class: "navbar-item" %>
+            <% if user_signed_in? %>
+              <hr class="navbar-divider">
+              <%= link_to "Send us feedback", new_app_feedback_path, class: "navbar-item" %>
+            <% end %>
           </div>
         </div>
       </div>

@@ -1,8 +1,16 @@
-<h1>AppFeedbacks#new</h1>
-<p>Find me in app/views/app_feedbacks/new.html.erb</p>
-
-<%= simple_form_for(@app_feedback) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :contents %>
-  <%= f.submit %>
-<% end %>
+<layout-columns class="columns is-centered">
+  <layout-column class="column box is-5 mt-6 p-5 m-4">
+    <h1 class="title">Send us feedback or report abuse</h1>
+    <%= form_with model: @app_feedback, class:"is-flex is-flex-direction-column" do |form| %>
+      <div class="block">
+        <%= form.label :title, class: "label" %>
+        <%= form.text_field :title, class: "input" %>
+      </div>
+      <div class="block">
+        <%= form.label :contents, class: "label" %>
+        <%= form.text_area :contents, size: "70x10", class: "textarea" %>
+      </div>
+      <%= form.submit "Submit feedback", class: "button is-primary is-medium is-align-self-flex-start mb-3 mt-3" %>
+    <% end %>
+  </layout-column>
+</layout-columns>
