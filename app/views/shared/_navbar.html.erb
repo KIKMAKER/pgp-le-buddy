@@ -16,7 +16,7 @@
       <div class="navbar-start">
         <% if user_signed_in? %>
           <%= link_to "Marketplace", "#", class: "navbar-item" %>
-          <%= link_to "Dashboard", "#", class: "navbar-item" %>
+          <%= link_to "Dashboard", dashboard_path, class: "navbar-item" %>
         <% end %>
         <div class="navbar-item has-dropdown is-hoverable mr-4">
           <%= link_to "More", "#", class: "navbar-link" %>
@@ -40,7 +40,7 @@
             <%= link_to "Profile", "#", class: "navbar-item" %>
             <%= link_to "Messages", "#", class: "navbar-item" %>
             <hr class="navbar-divider">
-            <%= link_to "Logout", "#", class: "navbar-item", data: { turbo_method: :delete } %>
+            <%= link_to "Logout", destroy_user_session_path, class: "navbar-item", data: { turbo_method: :delete } %>
           </div>
         </div>
       <% end %>
@@ -48,8 +48,8 @@
       <% if not user_signed_in? %>
         <div class="navbar-item">
           <div class="buttons">
-            <%= link_to "Sign up", "#", class: "button is-primary" %>
-            <%= link_to "Login", "#", class: "button is-light" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "button is-primary" %>
+            <%= link_to "Login", new_user_session_path, class: "button is-light" %>
           </div>
         </div>
       <% end %>
