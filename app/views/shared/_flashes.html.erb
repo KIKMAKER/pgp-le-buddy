@@ -1,10 +1,12 @@
 <% if notice %>
-  <div>
+  <div class="notification is-primary is-light bottom-corner-flash">
+    <button class="delete"></button>
     <%= notice %>
   </div>
 <% end %>
 <% if alert %>
-  <div>
+  <div class="notification is-danger is-light bottom-corner-flash">
+    <button class="delete"></button>
     <%= alert %>
   </div>
 <% end %>
