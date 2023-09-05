@@ -16,6 +16,7 @@
       <div class="navbar-start">
         <% if user_signed_in? %>
           <%= link_to "Marketplace", "#", class: "navbar-item" %>
+          <%= link_to "BuddyUps", buddy_ups_path, class: "navbar-item" %>
           <%= link_to "Dashboard", dashboard_path, class: "navbar-item" %>
         <% end %>
         <div class="navbar-item has-dropdown is-hoverable mr-4">

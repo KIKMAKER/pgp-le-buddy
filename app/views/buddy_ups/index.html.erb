@@ -1,17 +1,35 @@
-<h1>BuddyUps#index</h1>
-<p>Find me in app/views/buddy_ups/index.html.erb</p>
-
-<h2>This is the "Marketplace" page for our app.</h2>
-
-<% @buddy_ups.each do |buddy_up| %>
-  <div>
-    <p>Name: <%= buddy_up.name %></p>
-    <p>Description: <%= buddy_up.description %></p>
-    <p>Auto-match? <%= buddy_up.auto_match ? "Yes" : "No" %></p>
-    <p>Status: <%= buddy_up.status %></p>
-    <p>Availability: <%= buddy_up.availability %></p>
-    <p>Number of favourites: <%= buddy_up.favourites %></p>
-    <p>Linked Challenge name: <%= buddy_up.challenge.name %></p>
-    <p>Linked User email: <%= buddy_up.user.email %></p>
+<section class="content m-6">
+  <div class="container is-max-desktop">
+    <h1>BuddyUp</h1>
+    <p>Join a BuddyUp to complete a challenge with some, or create your own!</p>
   </div>
-<% end %>
+</section>
+
+<section class="content m-6">
+  <div class="container is-max-desktop buddy-grid">
+
+    <% @buddy_ups.each do |buddy_up| %>
+      <div class="card buddy-card">
+        <div class="card-content buddy-card-content">
+          <p class="title is-4"><%= buddy_up.name %></p>
+          <div class="block">
+            <p class="mb-0 is-size-7"><%= buddy_up.challenge.module %></p>
+            <p class="mb-0 is-size-7">-> <%= buddy_up.challenge.skill %></p>
+            <p class="has-text-weight-semibold mb-0 is-size-6">--> <%= buddy_up.challenge.name %></p>
+          </div>
+          <div class="block">
+            <span class="tag is-info is-light"><%= buddy_up.availability %></span>
+          </div>
+          <p class="mt-4"><%= buddy_up.description.truncate(75, separator: ' ') %></p>
+        </div>
+        <div class="buddy-card-watermark">
+          <%= image_tag "#{buddy_up.challenge.module}.png" %>
+        </div>
+        <div class="card-footer buddy-card-footer">
+          <a href="#" class="card-footer-item">View details</a>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</section>
