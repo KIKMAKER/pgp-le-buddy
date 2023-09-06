@@ -1,0 +1,154 @@
+<section class="content m-6">
+  <div class="container is-max-desktop">
+    <h1 class="title">My BuddyUps</h1>
+    <h4 class="mb-3">
+      All the BuddyUps you were involved in.
+    </h4>
+  </div>
+</section>
+
+<section class="content m-6">
+  <div class="container is-max-desktop">
+    <div class="box">
+      <% if @count.positive? %>
+        <div class="block">
+          <p class="mb-3">
+            BuddyUp progress (<%= @complete_bups.nil? ? 0 : @complete_bups.count %>/<%= @count %> completed)
+          </p>
+          <progress class="progress is-success" value=<%= @progress %> max="100"></progress>
+        </div>
+      <% end %>
+      <% if @archive_bups %>
+        <div class="block">
+          <p class="mb-3">
+            Abandonment rate (<%= @archive_bups.nil? ? 0 : @archive_bups.count %>/<%= @all_count %> archived)
+          </p>
+          <progress class="progress is-warning" value=<%= @abandonment %> max="100"></progress>
+        </div>
+      <% end %>
+      <% if @requested_bups %>
+        <div class="block">
+          <p class="mb-3">
+            Requests success rate (<%= @requested_bups.where(status: :approved).count %>/<%= @requested_bups.count %> requests approved)
+          </p>
+          <progress class="progress is-primary" value=<%= @request_success_rate %> max="100"></progress>
+        </div>
+      <% end %>
+      <% if !@requested_bups && !@archive_bups && !@count.positive? %>
+        <p>Create or join some BuddyUps to see them here!</p>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section class="content m-6">
+  <div class="container is-max-desktop">
+
+    <% if @active_bups %>
+      <h2>My active BuddyUps</h2>
+      <div class="table-container">
+        <table class="table is-hoverable is-fullwidth is-striped">
+          <thead>
+            <th class="td-name">Name</th>
+            <th class="td">Requests</th>
+            <th class="td">Favourites</th>
+            <th class="td">Buddies</th>
+            <th class="td"></th>
+          </thead>
+          <tbody>
+            <% @active_bups.each do |bu| %>
+              <tr>
+                <td class="td-name"><%= bu.name %></td>
+                <td class="td"><%= bu.requests.count %></td>
+                <td class="td"><%= bu.favourites %></td>
+                <td class="td"><%= bu.requests.where(status: :approved).count %></td>
+                <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button is-info is-light is-small" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
+    <% if @requested_bups %>
+      <h2>BuddyUps I requested to join</h2>
+      <div class="table-container">
+        <table class="table is-hoverable is-fullwidth is-striped">
+          <thead>
+            <th class="td-name">Name</th>
+            <th class="td">Buddy</th>
+            <th class="td">Status</th>
+            <th class="td"></th>
+          </thead>
+          <tbody>
+            <% @requested_bups.each do |re| %>
+              <tr>
+                <td class="td-name"><%= re.buddy_up.name %></td>
+                <td class="td"><%= re.buddy_up.user.name %></td>
+                <% if re.status == "approved" %>
+                  <td class="td"><span class="has-text-primary-dark has-text-weight-semibold"><%= re.status.capitalize %><span></td>
+                <% elsif re.status == "denied" %>
+                  <td class="td"><span class="has-text-danger-dark has-text-weight-semibold"><%= re.status.capitalize %><span></td>
+                <% else %>
+                  <td class="td"><%= re.status.capitalize %></td>
+                <% end %>
+                <td class="td"><%= link_to "View", buddy_up_path(re.buddy_up), class: "button is-info is-light is-small" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
+    <% if @complete_bups %>
+      <h2>Complete</h2>
+      <div class="table-container">
+        <table class="table is-hoverable is-fullwidth is-striped">
+          <thead>
+            <th class="td-name">Name</th>
+            <th class="td">Requests</th>
+            <th class="td">Favourites</th>
+            <th class="td">Buddies</th>
+            <th class="td"></th>
+          </thead>
+          <tbody>
+            <% @complete_bups.each do |bu| %>
+              <tr>
+                <td class="td-name"><%= bu.name %></td>
+                <td class="td"><%= bu.requests.count %></td>
+                <td class="td"><%= bu.favourites %></td>
+                <td class="td"><%= bu.requests.where(status: :approved).count %></td>
+                <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button is-info is-light is-small" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
+    <% if @archive_bups %>
+      <h2 class="has-text-grey-light">Archived</h2>
+      <div class="table-container">
+        <table class="table is-hoverable is-fullwidth is-striped has-text-grey-light">
+          <thead>
+            <th class="td-name has-text-grey-light">Name</th>
+            <th class="td has-text-grey-light">Requests</th>
+            <th class="td has-text-grey-light">Favourites</th>
+            <th class="td has-text-grey-light"></th>
+          </thead>
+          <tbody>
+            <% @archive_bups.each do |bu| %>
+              <tr>
+                <td class="td-name"><%= bu.name %></td>
+                <td class="td"><%= bu.requests.count %></td>
+                <td class="td"><%= bu.favourites %></td>
+                <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button is-light is-small" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
+  </div>
+</section>
