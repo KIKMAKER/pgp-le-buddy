@@ -7,6 +7,8 @@ It will be built in public by a rotating team of *le wagon Cape Town* alumni who
 offer their free time to learn and build a project that will be published and
 used in the real world.
 
+Learn more in this repository's wiki.
+
 ## What is *le buddy*?
 
 *le buddy* is a platform for *le wagon* alumni to re-do the bootcamp challenges.
@@ -43,9 +45,9 @@ To join the team, get in touch with [Kiki](https://github.com/KIKMAKER) to be
 added as a contributor to the projects. No pull requests will be accepted from
 outside the nominated team.
 
-Once you are a contributor you'll have access to the Trello board to grab tickets
-and complete them. A drawing of the database schema is
-[available on Kitt](https://kitt.lewagon.com/db/105325).
+Once you are a contributor, first go read the wiki (in this repo). You'll have
+access to the Trello board to grab tickets and complete them. A drawing of the
+database schema is [available on Kitt](https://kitt.lewagon.com/db/105325).
 
 We work by means of branches and pull requests – never push to the master branch
 from development.
