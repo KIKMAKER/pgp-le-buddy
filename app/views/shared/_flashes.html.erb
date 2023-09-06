@@ -1,12 +1,16 @@
 <% if notice %>
-  <div class="notification is-primary is-light bottom-corner-flash mb-0">
-    <button class="delete"></button>
+  <div class="notification is-primary is-light bottom-corner-flash mb-0"
+       data-controller="flashes"
+       data-flashes-target="notification">
+    <button class="delete" data-action="click->flashes#close"></button>
     <%= notice %>
   </div>
 <% end %>
 <% if alert %>
-  <div class="notification is-danger is-light bottom-corner-flash mb-0">
-    <button class="delete"></button>
+  <div class="notification is-danger is-light bottom-corner-flash mb-0"
+       data-controller="flashes"
+       data-flashes-target="notification">
+    <button class="delete" data-action="click->flashes#close"></button>
     <%= alert %>
   </div>
 <% end %>
