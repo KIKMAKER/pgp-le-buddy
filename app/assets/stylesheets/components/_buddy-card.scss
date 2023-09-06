@@ -1,0 +1,33 @@
+.buddy-card {
+  flex-basis: 250px;
+  flex-grow: 1;
+}
+
+.buddy-card-header {
+  height: 80px;
+}
+
+.buddy-card-footer {
+  height: 48px;
+}
+
+.buddy-card-content {
+  height: 360px;
+  overflow: auto;
+  position: relative;
+  z-index: 999;
+}
+
+.buddy-card-watermark {
+  position: absolute;
+  z-index: 1;
+  bottom: 41px;
+  right: 0px
+}
+
+.buddy-card-watermark > img {
+  opacity: 0.05;
+  object-fit: cover;
+  object-position: 100px 160px;
+  height: 360px;
+}
