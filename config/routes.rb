@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/privacy", to: "pages#privacy"
   get "/team", to: "pages#team"
   get "/dashboard", to: "pages#dashboard"
+  get "/favourite", to: "favourites#fav"
 
   resources :challenges, only: %i[index]
   resources :app_feedbacks
