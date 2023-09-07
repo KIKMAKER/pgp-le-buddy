@@ -5,6 +5,6 @@ class BuddyUpsController < ApplicationController
   end
 
   def show
-    @buddy_ups = BuddyUp.find(params[:id])
+    @buddy_up = BuddyUp.find(params[:id])
   end
 end
