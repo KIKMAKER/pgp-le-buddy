@@ -1,8 +1,36 @@
-<h1>Profile#show</h1>
-<p>Find me in app/views/profile/show.html.erb</p>
-<p><%= @profile.user.name %></p>
-<p><%= @profile.bio %></p>
-<p><%= @profile.batch %></p>
-<% @profile.languages.each do |language|%>
-  <p><%= language.name %></p>
-<% end %>
+<section class="content m-6">
+  <div class="container is-max-desktop two-column">
+    <div class="card">
+      <div class="card-header p-3">
+        <h3>Buddy Ups</h3>
+      </div>
+      <div class="card-content">
+        <p>Total <%= BuddyUp.all_count(@profile).round %></p>
+        <p>Favorited</p>
+        <p>In Progress <%= BuddyUp.progress(@profile).round %></p>
+        <p>Completed <%= BuddyUp.active_complete_total(@profile).round %></p>
+        <p>Archived <%= BuddyUp.abandonment(@profile).round %></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+      </div>
+      <div class="card-content">
+        <div class="two-column">
+          <div>
+            <%= image_tag @profile.user.avatar_url, class:"profile-avatar" %>
+            <h3><%= @profile.user.name %></h3>
+          </div>
+          <p><%= @profile.bio %></p>
+        </div>
+        <p>Batch #<%= @profile.batch %></p>
+        <h6>Languages</h6>
+        <div class="languages">
+          <% @profile.languages.each do |language|%>
+            <p><%= language.name %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

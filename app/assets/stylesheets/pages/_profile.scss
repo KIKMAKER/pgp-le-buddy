@@ -1,0 +1,31 @@
+.two-column {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin: 0 auto;
+}
+
+.two-column > :first-child {
+  flex-basis: 250px;
+  flex-grow: 1;
+}
+
+.two-column > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: 50%;
+}
+
+.languages {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  p {
+    width: max-content;
+  }
+}
+
+.profile-avatar {
+  border-radius: 50%;
+  width: 180px;
+}
