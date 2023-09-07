@@ -73,7 +73,7 @@ you have all the necessary components.
 install it with ```rbenv install 3.2.0```.
 3. Create an ```.env``` file and populate it with the values in the Slack canvas.
 4. Run ```bundle install``` and ```yarn install```
-5. Set up the database with ```rails db:drop db:create db:seed db:migrate```
+5. Set up the database with ```rails db:drop db:create db:migrate db:seed```
 
 Run the server in development with ```dev``` (or ```bin/dev```).
 
