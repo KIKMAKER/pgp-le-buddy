@@ -1,11 +1,26 @@
-<p> Name: <%= @buddy_up.name %></p>
-<p > Description: <%= @buddy_up.description %> </p>
-<p > Status: <%= @buddy_up.status %> </p>
-<p > Availability: <%= @buddy_up.availability %> </p>
-<p > Module: <%= @buddy_up.challenge.module %></p>
-<p > Skill: <%= @buddy_up.challenge.skill %></p>
-<p> Challenge Name: <%= @buddy_up.challenge.name %></p>
-<p> Buddy Up owner: <%= @buddy_up.profile.user.name %></p>
-
-
-
+<div class="container mt-5">
+  <div class="card">
+    <header class="card-header">
+      <h1 class="card-header-title custom-header">
+        <%= @buddy_up.name %>
+      </h1>
+    </header>
+    <div class="card-content">
+      <div class="content m-6">
+        <p > Description: <%= @buddy_up.description %> </p>
+        <p > Status: <%= @buddy_up.status %> </p>
+        <p > Availability: <%= @buddy_up.availability %> </p>
+        <p > Module: <%= @buddy_up.challenge.module %> </p>
+        <p > Skill: <%= @buddy_up.challenge.skill %> </p>
+        <p> Challenge Name: <%= @buddy_up.challenge.name %> </p>
+        <p> Buddy Up owner: <%= @buddy_up.profile.user.name %> </p>
+      </div>
+      <div class="buddy-card-watermark">
+        <%= image_tag "#{@buddy_up.challenge.module}.png" %>
+      </div>
+      <footer class="card-footer">
+        <a href="#" class="card-footer-item">Accept Buddy Up</a>
+      </footer>
+    </div>
+  </div>
+</div>
