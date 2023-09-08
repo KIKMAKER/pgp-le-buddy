@@ -8,4 +8,13 @@ class Profile < ApplicationRecord
   has_many :favourites, dependent: :destroy
 
   validates :batch, presence: true
+
+  # Find all the BuddyUps that were favourited by this profile
+  def fav_buddy_ups
+    bu_array = []
+    self.favourites.each do |favourite|
+      bu_array << favourite.buddy_up
+    end
+    return bu_array
+  end
 end

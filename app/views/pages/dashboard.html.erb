@@ -70,6 +70,10 @@
       </div>
     <% end %>
 
+    <% if @fav_bups %>
+      <%= render partial: "favourites/dashboard_index", locals: { fav_bups: @fav_bups } %>
+    <% end %>
+
     <% if @requested_bups %>
       <h2>BuddyUps I requested to join</h2>
       <div class="table-container">
