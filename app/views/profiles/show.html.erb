@@ -9,28 +9,11 @@
         <p>Favorited</p>
         <p>In Progress <%= BuddyUp.progress(@profile).round %></p>
         <p>Completed <%= BuddyUp.active_complete_total(@profile).round %></p>
-        <p>Archived <%= BuddyUp.abandonment(@profile).round %></p>
+        <p>Archived <%= BuddyUp.abandonment(@profile) %></p>
       </div>
     </div>
-    <div class="card">
-      <div class="card-header">
-      </div>
-      <div class="card-content">
-        <div class="two-column">
-          <div>
-            <%= image_tag @profile.user.avatar_url, class:"profile-avatar" %>
-            <h3><%= @profile.user.name %></h3>
-          </div>
-          <p><%= @profile.bio %></p>
-        </div>
-        <p>Batch #<%= @profile.batch %></p>
-        <h6>Languages</h6>
-        <div class="languages">
-          <% @profile.languages.each do |language|%>
-            <p><%= language.name %></p>
-          <% end %>
-        </div>
-      </div>
-    </div>
+
+    <%= render partial: "preview", locals: { profile: @profile } %>
+
   </div>
 </section>

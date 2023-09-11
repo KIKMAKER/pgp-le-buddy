@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   get "/privacy", to: "pages#privacy"
   get "/team", to: "pages#team"
   get "/dashboard", to: "pages#dashboard"
-
+  get "/edit_profile", to: "profiles#edit_profile"
   resources :challenges, only: %i[index]
   resources :app_feedbacks
   resources :buddy_ups, only: %i[index show]
-  resources :profiles, only: %i[index show new create]
+  resources :profiles, only: %i[index show new create update]
   resources :social_links, only: :create
   resources :requests
 end

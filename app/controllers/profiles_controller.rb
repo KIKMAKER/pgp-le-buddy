@@ -22,6 +22,22 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def edit_profile
+    @profile = Profile.find(params[:profile_id])
+    render partial: "form", locals: { profile: @profile }
+  end
+
+  def update
+    @profile = Profile.find(params[:id])
+    @profile.update(profile_params)
+    @profile.languages = Language.where(id: params[:profile][:language_ids])
+    if @profile.save
+      render partial: "preview", locals: { profile: @profile }
+    else
+      render partial: "form", locals: { profile: @profile }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def profile_params
