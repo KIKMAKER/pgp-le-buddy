@@ -1,9 +1,15 @@
 <turbo-frame id=<%= profile.id %>>
-  <%= simple_form_for @profile do |f| %>
-    <%= f.input :bio, placeholder: "Tell us about yourself..." %>
-    <%= f.input :batch, placeholder: "1122" %>
-    <%= f.input :show_email %>
-    <%= f.association :languages, collection: Language.all %> <%#  we should use tom select here %>
-    <%= f.button :submit %>
-  <% end %>
+  <div class="card">
+    <div class="card-content">
+      <div class="profile-form">
+        <%= simple_form_for @profile do |f| %>
+          <%= f.input :bio, placeholder: "Tell us about yourself..." %>
+          <%= f.input :batch, placeholder: "1122" %>
+          <%= f.input :show_email %>
+          <%= f.association :languages, collection: Language.all, as: :radio_buttons %> <%#  we should use tom select here %>
+          <%= f.button :submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </turbo-frame>
