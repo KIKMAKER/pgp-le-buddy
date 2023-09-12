@@ -9,7 +9,7 @@
           <div class="select is-multiple">
             <%= f.select :language_ids, options_from_collection_for_select(Language.all, 'id', 'name'), {}, {multiple: true} %>
           </div>
-          <%= f.button :submit %>
+          <%= f.button :submit, class: "button is-primary" %>
         <% end %>
       </div>
     </div>
