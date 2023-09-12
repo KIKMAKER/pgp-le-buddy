@@ -1,6 +1,15 @@
 class ProfilesController < ApplicationController
   def show
     @profile = Profile.find(params[:id])
+    @active_bups = BuddyUp.active_list(@profile)
+    @requested_bups = Request.requested(@profile)
+    @request_success_rate = Request.success_rate(@profile)
+    @complete_bups = BuddyUp.complete_list(@profile)
+    @archive_bups = BuddyUp.archive_list(@profile)
+    @progress = BuddyUp.progress(@profile)
+    @count = BuddyUp.active_complete_total(@profile)
+    @all_count = BuddyUp.all_count(@profile)
+    @abandonment = BuddyUp.abandonment(@profile)
   end
 
   def index

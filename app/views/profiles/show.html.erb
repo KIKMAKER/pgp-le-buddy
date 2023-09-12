@@ -1,15 +1,44 @@
 <section class="content m-6">
   <div class="container is-max-desktop two-column">
     <div class="card">
-      <div class="card-header p-3">
+      <div class="card-content p-5">
         <h3>Buddy Ups</h3>
-      </div>
-      <div class="card-content">
-        <p>Total <%= BuddyUp.all_count(@profile).round %></p>
-        <p>Favorited</p>
-        <p>In Progress <%= BuddyUp.progress(@profile).round %></p>
-        <p>Completed <%= BuddyUp.active_complete_total(@profile).round %></p>
-        <p>Archived <%= BuddyUp.abandonment(@profile) %></p>
+        <hr>
+        <% if @count.positive? %>
+          <div class="block">
+            <p class="mb-3">
+              BuddyUp progress (<%= @complete_bups.nil? ? 0 : @complete_bups.count %>/<%= @count %> completed)
+            </p>
+            <progress class="progress is-success" value=<%= @progress %> max="100"></progress>
+          </div>
+        <% end %>
+        <% if @archive_bups %>
+          <div class="block">
+            <p class="mb-3">
+              Abandonment rate (<%= @archive_bups.nil? ? 0 : @archive_bups.count %>/<%= @all_count %> archived)
+            </p>
+            <progress class="progress is-warning" value=<%= @abandonment %> max="100"></progress>
+          </div>
+        <% end %>
+        <% if @requested_bups %>
+          <div class="block">
+            <p class="mb-3">
+              Requests success rate (<%= @requested_bups.where(status: :approved).count %>/<%= @requested_bups.count %> requests approved)
+            </p>
+            <progress class="progress is-primary" value=<%= @request_success_rate %> max="100"></progress>
+          </div>
+        <% end %>
+        <% if !@requested_bups && !@archive_bups && !@count.positive? %>
+          <p>No Buddy Ups yet!</p>
+        <% end %>
+        <% if current_user == @profile.user %>
+        <%# Buddy up create still to be made %>
+          <%= link_to "New Buddy Up", "#", class: "button is-primary" %>
+          <%# this buddy up is for the owner of the profile to make a new buddy up %>
+        <% else %>
+          <%= link_to "Join Buddy Up", "#", class: "button is-primary" %>
+          <%# this buddy up is for someone looking at this profile to join a buddy up with this user, possible feature %>
+        <% end %>
       </div>
     </div>
 
