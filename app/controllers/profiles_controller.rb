@@ -50,6 +50,11 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def preview
+    @profile = current_user.profile
+    render partial: "preview", locals: { profile: @profile }
+  end
+
   private
 
   def profile_params

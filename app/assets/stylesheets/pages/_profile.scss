@@ -35,6 +35,13 @@
   margin: 0;
 }
 
+.profile-edit-close {
+  display: flex;
+  justify-content: flex-end;
+  color: black;
+  margin-bottom: 5px;
+}
+
 .profile-form > :first-child {
   display: flex;
   flex-direction: column;

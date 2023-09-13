@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/team", to: "pages#team"
   get "/dashboard", to: "pages#dashboard"
   get "/edit_profile", to: "profiles#edit_profile"
+  get "/preview", to: "profiles#preview"
   resources :challenges, only: %i[index]
   resources :app_feedbacks
   resources :buddy_ups, only: %i[index show]

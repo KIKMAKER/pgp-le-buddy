@@ -1,6 +1,7 @@
 <turbo-frame id=<%= profile.id %>>
   <div class="card">
     <div class="card-content">
+    <%= link_to "✖", preview_path, class: "profile-edit-close" %>
       <div class="profile-form">
         <%= simple_form_for profile do |f| %>
           <%= f.input :bio, placeholder: "Tell us about yourself..." %>
