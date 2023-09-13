@@ -40,6 +40,9 @@
   flex-direction: column;
   gap: 16px;
   // .profile-bio comes from simple form
+  input[type="submit"] {
+    width: 175px;
+  }
   .profile_bio {
     height: 180px;
     width: 100%;

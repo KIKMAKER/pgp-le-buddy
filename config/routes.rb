@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   resources :profiles, only: %i[index show new create update]
   resources :social_links, only: :create
   resources :requests
+  resources :profile_languages, only: %i[create destroy]
 end

@@ -33,16 +33,19 @@ class ProfilesController < ApplicationController
 
   def edit_profile
     @profile = Profile.find(params[:profile_id])
+    @new_profile_language = ProfileLanguage.new
+    @profile_languages = current_user.profile.profile_languages.includes(:language)
     render partial: "form", locals: { profile: @profile }
   end
 
   def update
     @profile = Profile.find(params[:id])
     @profile.update(profile_params)
-    @profile.languages = Language.where(id: params[:profile][:language_ids])
     if @profile.save
       render partial: "preview", locals: { profile: @profile }
     else
+      @new_profile_language = ProfileLanguage.new
+      @profile_languages = current_user.profile.profile_languages.includes(:language)
       render partial: "form", locals: { profile: @profile }, status: :unprocessable_entity
     end
   end

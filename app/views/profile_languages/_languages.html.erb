@@ -1,0 +1,25 @@
+<turbo-frame id="languages" class="p-6">
+  <% unless profile_languages.nil? %>
+  <h6>Languages</h6>
+  <% end %>
+  <div class="field is-grouped is-grouped-multiline">
+    <% profile_languages.each do |pl| %>
+      <div class="control">
+        <div class="tags has-addons">
+          <a class="tag is-primary"><%= pl.language.name %></a>
+          <%= link_to "",
+          profile_language_path(pl),
+          data: {turbo_method: :delete},
+          class: "tag is-delete"
+        %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= simple_form_for profile_language do |f| %>
+    <div class="select is-primary">
+      <%= f.select :language_id, options_from_collection_for_select(Language.all, 'id', 'name'), {} %>
+    </div>
+    <%= f.submit 'Add Language', class: "button is-primary" %>
+  <% end %>
+</turbo-frame>

@@ -6,12 +6,10 @@
           <%= f.input :bio, placeholder: "Tell us about yourself..." %>
           <%= f.input :batch, placeholder: "1122" %>
           <%= f.input :show_email %>
-          <div class="select is-multiple">
-            <%= f.select :language_ids, options_from_collection_for_select(Language.all, 'id', 'name'), {}, {multiple: true} %>
-          </div>
           <%= f.button :submit, class: "button is-primary" %>
         <% end %>
       </div>
+      <%= render partial: 'profile_languages/languages', locals: { profile_language: @new_profile_language, profile_languages:  @profile_languages } %>
     </div>
   </div>
 </turbo-frame>
