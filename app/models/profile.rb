@@ -5,6 +5,4 @@ class Profile < ApplicationRecord
   has_many :feedbacks
   has_many :buddy_ups
   has_many :requests, dependent: :destroy
-
-  validates :batch, presence: true
 end
