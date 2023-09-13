@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "/dashboard", to: "pages#dashboard"
   get "/edit_profile", to: "profiles#edit_profile"
   get "/preview", to: "profiles#preview"
+  get "/favourite_fav", to: "favourites#fav"
+  get "/favourite_del", to: "favourites#delete"
+
   resources :challenges, only: %i[index]
   resources :app_feedbacks
   resources :buddy_ups, only: %i[index show]

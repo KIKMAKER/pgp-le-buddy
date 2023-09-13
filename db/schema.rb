@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_30_141411) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_05_082353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,7 +30,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_141411) do
     t.boolean "auto_match"
     t.integer "status"
     t.text "availability"
-    t.integer "favourites"
     t.bigint "challenge_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,6 +45,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_141411) do
     t.string "url_fragment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favourites", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "buddy_up_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buddy_up_id"], name: "index_favourites_on_buddy_up_id"
+    t.index ["profile_id"], name: "index_favourites_on_profile_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -127,6 +135,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_141411) do
   add_foreign_key "app_feedbacks", "profiles"
   add_foreign_key "buddy_ups", "challenges"
   add_foreign_key "buddy_ups", "profiles"
+  add_foreign_key "favourites", "buddy_ups"
+  add_foreign_key "favourites", "profiles"
   add_foreign_key "feedbacks", "buddy_ups"
   add_foreign_key "feedbacks", "profiles"
   add_foreign_key "profile_languages", "languages"
