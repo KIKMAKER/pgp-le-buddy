@@ -18,9 +18,10 @@
       <h6>Languages</h6>
       <div class="languages">
         <% profile.languages.each do |language|%>
-          <p><%= language.name %></p>
+          <p class="tag is-info"><%= language.name %></p>
         <% end %>
       </div>
+      <br>
       <% if current_user == profile.user %>
         <%= link_to "Edit Profile", edit_profile_path(profile_id: profile.id), class:"button is-primary"%>
       <% end %>
