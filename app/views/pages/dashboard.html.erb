@@ -60,7 +60,7 @@
               <tr>
                 <td class="td-name"><%= bu.name %></td>
                 <td class="td"><%= bu.requests.count %></td>
-                <td class="td"><%= bu.favourites %></td>
+                <td class="td"><%= bu.favourites.count %></td>
                 <td class="td"><%= bu.requests.where(status: :approved).count %></td>
                 <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button is-info is-light is-small" %></td>
               </tr>
@@ -68,6 +68,10 @@
           </tbody>
         </table>
       </div>
+    <% end %>
+
+    <% if @fav_bups %>
+      <%= render partial: "favourites/dashboard_index", locals: { fav_bups: @fav_bups } %>
     <% end %>
 
     <% if @requested_bups %>
@@ -116,7 +120,7 @@
               <tr>
                 <td class="td-name"><%= bu.name %></td>
                 <td class="td"><%= bu.requests.count %></td>
-                <td class="td"><%= bu.favourites %></td>
+                <td class="td"><%= bu.favourites.count %></td>
                 <td class="td"><%= bu.requests.where(status: :approved).count %></td>
                 <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button is-info is-light is-small" %></td>
               </tr>
@@ -141,7 +145,7 @@
               <tr>
                 <td class="td-name"><%= bu.name %></td>
                 <td class="td"><%= bu.requests.count %></td>
-                <td class="td"><%= bu.favourites %></td>
+                <td class="td"><%= bu.favourites.count %></td>
                 <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button is-light is-small" %></td>
               </tr>
             <% end %>

@@ -6,6 +6,7 @@ puts "Development seed running."
 puts "Clearing all data from the database..."
 Request.destroy_all
 Feedback.destroy_all
+Favourite.destroy_all
 BuddyUp.destroy_all
 Challenge.destroy_all
 AppFeedback.destroy_all
@@ -14,6 +15,8 @@ Profile.destroy_all
 Language.destroy_all
 User.destroy_all
 puts "Requests: #{Request.all.count}"
+puts "Feedbacks: #{Feedback.all.count}"
+puts "Favourites: #{Favourite.all.count}"
 puts "BuddyUps: #{BuddyUp.all.count}"
 puts "Challenges: #{Challenge.all.count}"
 puts "AppFeeback: #{AppFeedback.all.count}"
@@ -84,6 +87,11 @@ BuddyUp.where(status: :complete).each do |buddy_up|
 end
 puts "...done. #{Feedback.all.count} Feedbacks added to the database."
 puts ""
+
+# Favourites
+puts "Creating Favourites..."
+load(Rails.root.join( 'db', 'seeds', 'partials', '_favourites.rb'))
+puts "...done. #{Favourite.all.count} Favourites added to the database."
 # ------------------------------------------------------------------------------
 
 puts "Development seed complete."

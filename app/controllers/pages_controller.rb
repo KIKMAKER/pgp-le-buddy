@@ -17,6 +17,6 @@ class PagesController < ApplicationController
     @count = BuddyUp.active_complete_total(@profile)
     @all_count = BuddyUp.all_count(@profile)
     @abandonment = BuddyUp.abandonment(@profile)
-    # TODO: still need to add the favourites
+    @fav_bups = @profile.fav_buddy_ups
   end
 end
