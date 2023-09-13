@@ -27,8 +27,7 @@
         </div>
         <div class="card-footer buddy-card-footer">
           <a href="#" class="card-footer-item">View details</a>
-          <% Favourite.where(buddy_up: , profile: @profile).empty? ? icon="⭐️" : icon="🌟" %>
-          <%= render partial: "favourites/favourite_button", locals: { buddy_up:,icon: } %>
+          <%= render partial: "favourites/favourite_button", locals: { buddy_up:, profile: @profile } %>
         </div>
       </div>
     <% end %>

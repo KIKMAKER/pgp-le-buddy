@@ -13,12 +13,11 @@ class Favourite < ApplicationRecord
       favourite.buddy_up = buddy_up
       favourite.profile = profile
       favourite.save
-      return true
     else
       existing_favourites.each do |f|
         f.destroy
       end
-      return false
     end
+    return true
   end
 end
