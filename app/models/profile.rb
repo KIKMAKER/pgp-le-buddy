@@ -7,8 +7,6 @@ class Profile < ApplicationRecord
   has_many :requests, dependent: :destroy
   has_many :favourites, dependent: :destroy
 
-  validates :batch, presence: true
-
   # Find all the BuddyUps that were favourited by this profile
   def fav_buddy_ups
     bu_array = []
