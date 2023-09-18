@@ -2,7 +2,7 @@
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= button_to omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "button is-primary" do %>
       <span class="icon-text">
-        <span>Sign In With Github</span>
+        <span>Sign In With GitHub</span>
         <span class="icon">
           <i class="fa-brands fa-github fa-lg"></i>
         </span>
