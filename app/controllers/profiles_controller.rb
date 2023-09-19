@@ -42,6 +42,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     @profile.update(profile_params)
     if @profile.save
+      # a user becomes active once they have updated their profile
       current_user.active! if current_user.registered?
       render partial: "preview", locals: { profile: @profile }
     else
