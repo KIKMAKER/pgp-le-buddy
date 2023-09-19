@@ -42,6 +42,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     @profile.update(profile_params)
     if @profile.save
+      current_user.active! if current_user.registered?
       render partial: "preview", locals: { profile: @profile }
     else
       @new_profile_language = ProfileLanguage.new
