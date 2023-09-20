@@ -4,8 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[github]
-
-  enum :status, [ :active, :dummy, :away ]
+  # registered: created an account but have not updated their empty profile
+  # acvtive: updated profile with info
+  # dummy: fake account for testing and presentation
+  # away: user not active, hide buddy ups in market place
+  enum :status, { registered: 0, active: 1, dummy: 2, away: 3 }, default: :registered
   has_one :profile
   has_many :social_links, dependent: :destroy
 
@@ -16,14 +19,10 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.github_name = auth.info.nickname
       user.avatar_url = auth.info.image
-      @user = user
+      user.profile = Profile.new
       # If you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
-    profile = Profile.new
-    profile.user = @user
-    profile.save
-    return @user
   end
 end

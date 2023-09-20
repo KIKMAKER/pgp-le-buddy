@@ -15,6 +15,7 @@
  */
 
 @import "bulma";
+@import "font-awesome";
 
 // Fonts
 @import "fonts";
@@ -25,5 +26,5 @@
 
 // Application-wide CSS (will override the above)
 body {
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-family: "Inter", Helvetica, Arial, sans-serif;
 }
