@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get "/preview", to: "profiles#preview"
   get "/favourite_fav", to: "favourites#fav"
   get "/favourite_del", to: "favourites#delete"
-  get "/admin", to: "pages#admin"
 
   resources :challenges, only: %i[index]
   resources :app_feedbacks
@@ -20,4 +19,12 @@ Rails.application.routes.draw do
   resources :social_links, only: :create
   resources :requests
   resources :profile_languages, only: %i[create destroy]
+  
+  # --------------- Admin dashboard ---------------
+  get "/admin", to: "pages#admin"
+  get "/admin/app_feedbacks", to: "pages#admin_app_feedbacks"
+  get "/admin/users", to: "pages#admin_users"
+  get "/admin/bups", to: "pages#admin_bups"
+  get "/admin/challenges", to: "pages#admin_challenges"
+  # ------------- end admin dashboard -------------
 end

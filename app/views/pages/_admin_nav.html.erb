@@ -1,10 +1,9 @@
-<nav class="panel is-primary m-4 fix-width" data-controller="controlnav">
+<nav class="panel is-primary m-4 fix-width" data-controller="adminnav">
 	<p class="panel-heading">
 		<%= link_to "Admin control panel", admin_path, class: "has-text-white" %>
 	</p>
-	<%= link_to "Users and Profiles", "#", class: "panel-block", data: { turbo_frame: 'main', action: "click->controlnav#toggle", controlnav_target: "menuitem" } %>
-	<%= link_to "BuddyUps", "#", class: "panel-block", data: { turbo_frame: 'main', action: "click->controlnav#toggle", controlnav_target: "menuitem" } %>
-	<%= link_to "Challenges", "#", class: "panel-block", data: { turbo_frame: 'main', action: "click->controlnav#toggle", controlnav_target: "menuitem" } %>
-	<%= link_to "Feedbacks", "#", class: "panel-block", data: { turbo_frame: 'main', action: "click->controlnav#toggle", controlnav_target: "menuitem" } %>
-	<%= link_to "App Feedbacks", "#", class: "panel-block", data: { turbo_frame: 'main', action: "click->controlnav#toggle", controlnav_target: "menuitem" } %>
+	<%= link_to "Users and Profiles", admin_users_path, class: "panel-block", data: { turbo_frame: 'main', action: "click->adminnav#toggle", adminnav_target: "menuitem" } %>
+	<%= link_to "BuddyUps", admin_bups_path, class: "panel-block", data: { turbo_frame: 'main', action: "click->adminnav#toggle", adminnav_target: "menuitem" } %>
+	<%= link_to "Challenges", admin_challenges_path, class: "panel-block", data: { turbo_frame: 'main', action: "click->adminnav#toggle", adminnav_target: "menuitem" } %>
+	<%= link_to "App Feedbacks", admin_app_feedbacks_path, class: "panel-block", data: { turbo_frame: 'main', action: "click->adminnav#toggle", adminnav_target: "menuitem" } %>
 </nav>

@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AdminnavController from "./adminnav_controller"
+application.register("adminnav", AdminnavController)
+
 import FlashesController from "./flashes_controller"
 application.register("flashes", FlashesController)
 
