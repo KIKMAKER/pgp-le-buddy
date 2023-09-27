@@ -28,7 +28,7 @@ puts "...done."
 puts ""
 
 # Test user account
-User.create(email: "test@test.com", password: "123456", name: "Tester", github_name: "Bot1234", avatar_url: "https://avatars.githubusercontent.com/u/91339335?v=4", status: 1)
+User.create(email: "test@test.com", password: "123456", name: "Tester", github_name: "Bot1234", avatar_url: "https://avatars.githubusercontent.com/u/91339335?v=4", status: 1, admin: true)
 puts "Test user created: test@test.com, 123456"
 puts ""
 

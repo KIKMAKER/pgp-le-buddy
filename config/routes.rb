@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "/preview", to: "profiles#preview"
   get "/favourite_fav", to: "favourites#fav"
   get "/favourite_del", to: "favourites#delete"
+  get "/admin", to: "pages#admin"
 
   resources :challenges, only: %i[index]
   resources :app_feedbacks

@@ -1,0 +1,10 @@
+<nav class="panel is-primary m-4 fix-width" data-controller="controlnav">
+	<p class="panel-heading">
+		<%= link_to "Admin control panel", admin_path, class: "has-text-white" %>
+	</p>
+	<%= link_to "Users and Profiles", "#", class: "panel-block", data: { turbo_frame: 'main', action: "click->controlnav#toggle", controlnav_target: "menuitem" } %>
+	<%= link_to "BuddyUps", "#", class: "panel-block", data: { turbo_frame: 'main', action: "click->controlnav#toggle", controlnav_target: "menuitem" } %>
+	<%= link_to "Challenges", "#", class: "panel-block", data: { turbo_frame: 'main', action: "click->controlnav#toggle", controlnav_target: "menuitem" } %>
+	<%= link_to "Feedbacks", "#", class: "panel-block", data: { turbo_frame: 'main', action: "click->controlnav#toggle", controlnav_target: "menuitem" } %>
+	<%= link_to "App Feedbacks", "#", class: "panel-block", data: { turbo_frame: 'main', action: "click->controlnav#toggle", controlnav_target: "menuitem" } %>
+</nav>

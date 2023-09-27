@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[github]
   # registered: created an account but have not updated their empty profile
-  # acvtive: updated profile with info
+  # active: updated profile with info
   # dummy: fake account for testing and presentation
   # away: user not active, hide buddy ups in market place
   enum :status, { registered: 0, active: 1, dummy: 2, away: 3 }, default: :registered
