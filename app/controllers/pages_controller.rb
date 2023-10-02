@@ -20,7 +20,6 @@ class PagesController < ApplicationController
     @fav_bups = @profile.fav_buddy_ups
   end
 
-  # --------------- Admin control panel ---------------
   def admin
     if current_user.admin
       @active_users_count = User.where(status: :active).count
@@ -31,11 +30,5 @@ class PagesController < ApplicationController
       redirect_to root_path
     end
   end
-
-  def admin_app_feedbacks
-    redirect_to root_path and return unless valid_referer?
-    render partial: "pages/admin_app_feedbacks"
-  end
-  # ------------- end Admin control panel -------------
 
 end
