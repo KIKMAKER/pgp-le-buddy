@@ -1,3 +1,8 @@
 class RequestsController < ApplicationController
-  # add the necessary actions here later when the Figma makes clear what is required where
+  def admin_delete
+    @request = Request.find(params[:id])
+    @bu = @request.buddy_up
+    @request.destroy
+    render "buddy_ups/admin_show"
+  end
 end

@@ -1,0 +1,34 @@
+<div class="is-flex">
+	<div class="is-flex is-flex-direction-column">
+		<%= render "admin_nav" %>
+		<div class="is-flex-grow-1"></div>
+	</div>
+
+	<main class="m-4 box content is-flex-grow-1">
+		<%= turbo_frame_tag "main" do %>
+
+			<h1 class="title">LeBuddy at a glance</h1>
+			<div class="columns is-8 mt-6">
+				<div class="column has-text-centered">
+					<h2 class="is-size-1 mb-1"><%= @active_users_count %></h2>
+					<p class="mb-6">Active Users</p>
+				</div>
+				<div class="column has-text-centered">
+					<h2 class="is-size-1 mb-1"><%= @away_users_count %></h2>
+					<p class="mb-6">Away Users</p>
+				</div>
+			</div>
+			<div class="columns">
+				<div class="column has-text-centered">
+					<h2 class="is-size-1 mb-1"><%= @active_bups %></h2>
+					<p class="mb-6">Active BuddyUps</p>
+				</div>
+				<div class="column has-text-centered">
+					<h2 class="is-size-1 mb-1"><%= @complete_bups %></h2>
+					<p class="mb-6">Completed BuddyUps</p>
+				</div>
+			</div>
+
+		<% end %>
+	</main>
+</div>

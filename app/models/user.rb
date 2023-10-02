@@ -5,12 +5,22 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[github]
   # registered: created an account but have not updated their empty profile
-  # acvtive: updated profile with info
+  # active: updated profile with info
   # dummy: fake account for testing and presentation
   # away: user not active, hide buddy ups in market place
   enum :status, { registered: 0, active: 1, dummy: 2, away: 3 }, default: :registered
   has_one :profile
   has_many :social_links, dependent: :destroy
+  has_many :buddy_ups, through: :profile
+
+  # Set up pg_search
+  include PgSearch::Model
+  pg_search_scope :search_user_profile,
+    against: [ :name, :github_name, :email, :status ],
+    associated_against: {
+      profile: [ :batch, :bio ]
+    },
+    using: { tsearch: { prefix: true } }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

@@ -4,6 +4,7 @@ puts "Development seed running."
 # ---------------------- Add your seed code in this block ----------------------
 # Clear existing data from database
 puts "Clearing all data from the database..."
+SocialLink.destroy_all
 Request.destroy_all
 Feedback.destroy_all
 Favourite.destroy_all
@@ -28,7 +29,7 @@ puts "...done."
 puts ""
 
 # Test user account
-User.create(email: "test@test.com", password: "123456", name: "Tester", github_name: "Bot1234", avatar_url: "https://avatars.githubusercontent.com/u/91339335?v=4", status: 1)
+User.create(email: "test@test.com", password: "123456", name: "Tester", github_name: "Bot1234", avatar_url: "https://avatars.githubusercontent.com/u/91339335?v=4", status: 1, admin: true)
 puts "Test user created: test@test.com, 123456"
 puts ""
 
@@ -92,6 +93,11 @@ puts ""
 puts "Creating Favourites..."
 load(Rails.root.join( 'db', 'seeds', 'partials', '_favourites.rb'))
 puts "...done. #{Favourite.all.count} Favourites added to the database."
+
+# Social Links
+puts "Creating Social Links..."
+load(Rails.root.join( 'db', 'seeds', 'partials', '_social_links.rb'))
+puts "...done. #{SocialLink.all.count} Social Links added across all of the users."
 # ------------------------------------------------------------------------------
 
 puts "Development seed complete."

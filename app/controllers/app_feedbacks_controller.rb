@@ -22,6 +22,22 @@ class AppFeedbacksController < ApplicationController
     end
   end
 
+  def admin_index
+    redirect_to root_path and return unless valid_referer?
+    # If there was a search form submission, do the search,
+    # otherwise return all AppFeedbacks
+    if params[:query].present?
+      @app_feedbacks = AppFeedback.search(params[:query])
+    else
+      @app_feedbacks = AppFeedback.all
+    end
+  end
+
+  def admin_show
+    redirect_to root_path and return unless valid_referer?
+    @app_feedback = AppFeedback.find(params[:id])
+  end
+
   private
 
   def app_feedback_params

@@ -1,0 +1,25 @@
+<%= turbo_frame_tag "main" do %>
+
+  <h2 class="title has-text-grey">Challenges / <span class="title has-text-black"><%= @challenge.name %></span></h2>
+
+  <%= simple_form_for(@challenge, html: { class: "is-flex is-flex-direction-column" }) do |f| %>
+    <div class="block">
+      <p class="label">Name</p>
+      <%= f.input_field :name, class: "input" %>
+    </div>
+    <div class="block">
+      <p class="label">Skill</p>
+      <%= f.input_field :skill, class: "input" %>
+    </div>
+    <div class="block">
+      <p class="label">Module</p>
+      <%= f.input_field :module, class: "input" %>
+    </div>
+    <div class="block">
+      <p class="label">URL fragment</p>
+      <%= f.input_field :url_fragment, class: "input" %>
+    </div>
+    <%= f.button :submit, "Save changes", class: "button is-primary mt-3" %>
+  <% end %>
+
+<% end %>

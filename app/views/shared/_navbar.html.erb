@@ -39,6 +39,10 @@
           <div class="navbar-dropdown is-right">
             <%= link_to "Profile", profile_path(current_user.profile), class: "navbar-item" %>
             <%= link_to "Messages", "#", class: "navbar-item" %>
+            <% if current_user.admin %>
+              <hr class="navbar-divider">
+              <%= link_to "Admin control panel", admin_path, class: "navbar-item" %>
+            <% end %>
             <hr class="navbar-divider">
             <%= link_to "Logout", destroy_user_session_path, class: "navbar-item", data: { turbo_method: :delete } %>
           </div>
