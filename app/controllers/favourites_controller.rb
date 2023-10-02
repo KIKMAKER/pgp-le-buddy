@@ -23,4 +23,12 @@ class FavouritesController < ApplicationController
     @fav_bups = @profile.fav_buddy_ups
     render partial: "favourites/dashboard_index", locals: { fav_bups: @fav_bups }
   end
+
+  def admin_delete
+    redirect_to root_path and return unless valid_referer?
+    @fav = Favourite.find(params[:id])
+    @bu = @fav.buddy_up
+    @fav.destroy
+    render "buddy_ups/admin_show"
+  end
 end

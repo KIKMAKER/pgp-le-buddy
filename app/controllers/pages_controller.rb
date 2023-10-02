@@ -19,8 +19,8 @@ class PagesController < ApplicationController
     @abandonment = BuddyUp.abandonment(@profile)
     @fav_bups = @profile.fav_buddy_ups
   end
-  
-  # --------------- Admin dashboard ---------------
+
+  # --------------- Admin control panel ---------------
   def admin
     if current_user.admin
       @active_users_count = User.where(status: :active).count
@@ -31,23 +31,11 @@ class PagesController < ApplicationController
       redirect_to root_path
     end
   end
-  
-  def admin_users
-    render partial: "pages/admin_users"
-  end
-  
-  def admin_bups
-    render partial: "pages/admin_bups"
-  end
-  
-  def admin_challenges
-    render partial: "pages/admin_challenges"
-  end
-  
+
   def admin_app_feedbacks
+    redirect_to root_path and return unless valid_referer?
     render partial: "pages/admin_app_feedbacks"
   end
-  
-  # ------------- end admin dashboard -------------
-  
+  # ------------- end Admin control panel -------------
+
 end

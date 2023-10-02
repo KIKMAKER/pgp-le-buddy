@@ -11,6 +11,16 @@ class User < ApplicationRecord
   enum :status, { registered: 0, active: 1, dummy: 2, away: 3 }, default: :registered
   has_one :profile
   has_many :social_links, dependent: :destroy
+  has_many :buddy_ups, through: :profile
+
+  # Set up pg_search
+  include PgSearch::Model
+  pg_search_scope :search_user_profile,
+    against: [ :name, :github_name, :email, :status ],
+    associated_against: {
+      profile: [ :batch, :bio ]
+    },
+    using: { tsearch: { prefix: true } }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

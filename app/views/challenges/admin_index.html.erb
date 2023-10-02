@@ -1,0 +1,46 @@
+<%= turbo_frame_tag "main" do %>
+
+  <div class="is-flex">
+    <div>
+      <h1 class="title">Challenges</h1>
+    </div>
+    <div class="is-flex-grow-1">
+      <!--Search form-->
+      <%= form_with url: admin_challenges_path, method: :get, class: "is-pulled-right" do %>
+      <div class="field has-addons">
+        <div class="control">
+          <%= text_field_tag :query, params[:query], class: "input", placeholder: "Search Challenges" %>
+        </div>
+        <div class="control">
+          <%= submit_tag "Search", class: "button is-info" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!--Table listing the results-->
+  <% if @challenges.any? %>
+    <table class="table is-striped is-hoverable is-fullwidth mt-6">
+      <thead>
+        <th>Module</th>
+        <th>Skill</th>
+        <th>Name</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @challenges.each do |challenge| %>
+          <tr>
+            <td class="is-vcentered"><%= challenge.module %></td>
+            <td class="is-vcentered"><%= challenge.skill %></td>
+            <td class="is-vcentered"><%= challenge.name %></td>
+            <td class="is-vcentered"><%= link_to "Edit", admin_edit_challenge_path(challenge), class: "button is-info is-pulled-right" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="mt-6">No Challenges to display.</p>
+  <% end %>
+
+<% end %>

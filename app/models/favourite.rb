@@ -1,6 +1,7 @@
 class Favourite < ApplicationRecord
   belongs_to :profile
   belongs_to :buddy_up
+  has_one :user, through: :profile
 
   # Here we handle the click on a favourite button
   # If the user (profile) has already favourited this particular BuddyUp, that

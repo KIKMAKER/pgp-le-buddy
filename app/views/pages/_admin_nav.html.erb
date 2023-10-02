@@ -3,7 +3,7 @@
 		<%= link_to "Admin control panel", admin_path, class: "has-text-white" %>
 	</p>
 	<%= link_to "Users and Profiles", admin_users_path, class: "panel-block", data: { turbo_frame: 'main', action: "click->adminnav#toggle", adminnav_target: "menuitem" } %>
-	<%= link_to "BuddyUps", admin_bups_path, class: "panel-block", data: { turbo_frame: 'main', action: "click->adminnav#toggle", adminnav_target: "menuitem" } %>
+	<%= link_to "BuddyUps", admin_bups_index_path, class: "panel-block", data: { turbo_frame: 'main', action: "click->adminnav#toggle", adminnav_target: "menuitem" } %>
 	<%= link_to "Challenges", admin_challenges_path, class: "panel-block", data: { turbo_frame: 'main', action: "click->adminnav#toggle", adminnav_target: "menuitem" } %>
 	<%= link_to "App Feedbacks", admin_app_feedbacks_path, class: "panel-block", data: { turbo_frame: 'main', action: "click->adminnav#toggle", adminnav_target: "menuitem" } %>
 </nav>

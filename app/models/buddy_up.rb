@@ -9,6 +9,16 @@ class BuddyUp < ApplicationRecord
   validates :name, :description, :challenge, :profile, presence: true
   enum :status, { active: 0, archived: 1, complete: 2 }, default: :active
 
+  # Set up pg_search
+  include PgSearch::Model
+  pg_search_scope :search,
+    against: [ :name, :description, :availability, :status ],
+    associated_against: {
+      requests: [ :status, :message ],
+      feedbacks: [ :message, :work_again ]
+    },
+    using: { tsearch: { prefix: true } }
+
   def self.active_list(profile)
     buddy_ups = BuddyUp.where(profile: , status: :active)
     buddy_ups.count > 0 ? buddy_ups : nil

@@ -1,0 +1,137 @@
+<%= turbo_frame_tag "main" do %>
+
+  <!--Name and status-->
+  <div class="is-flex is-align-items-center mb-6 pl-5 pr-5">
+    <div class="is-flex-grow-1">
+      <h1 class="title mb-0"><%= @bu.name %></h1>
+    </div>
+    <div>
+      <p class="title"><%= @bu.status.capitalize %></p>
+    </div>
+  </div>
+
+  <!--User information-->
+  <div class="is-flex is-align-items-center mb-6 pl-5 pr-5">
+    <div>
+      <figure class="image is-96x96 m-0 mr-5"><img class="is-rounded" src="<%= @bu.user.avatar_url %>" /></figure>
+    </div>
+    <div class="is-flex-grow-1">
+      <h2 class="title"><%= @bu.user.name %></h1>
+      <p class="subtitle mb-2"><%= @bu.user.email %></p>
+    </div>
+  </div>
+
+  <!--Stat counters-->
+  <hr class="navbar-divider">
+  <nav class="level is-mobile mt-5">
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Requests</p>
+        <p class="title"><%= @bu.requests.count %></p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Favourites</p>
+        <p class="title"><%= @bu.favourites.count %></p>
+      </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Feedbacks</p>
+        <p class="title"><%= @bu.feedbacks.count %></p>
+      </div>
+    </div>
+  </nav>
+  <hr class="navbar-divider">
+
+  <!--BuddyUp details-->
+  <div class="columns mt-5 is-8">
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="has-text-weight-bold has-text-success-dark">Challenge</td>
+            <td><%= "#{@bu.challenge.module} / #{@bu.challenge.skill} / #{@bu.challenge.name}" %></td>
+          </tr>
+          <tr>
+            <td class="has-text-weight-bold has-text-success-dark">Created</td>
+            <td><%= @bu.created_at.strftime("%e %B %Y %H:%M:%S") %></td>
+          </tr>
+          <tr>
+            <td class="has-text-weight-bold has-text-success-dark">Last updated</td>
+            <td><%= @bu.updated_at.strftime("%e %B %Y %H:%M:%S") %></td>
+          </tr>
+          <tr>
+            <td class="has-text-weight-bold has-text-success-dark">Auto match allowed?</td>
+            <td><%= @bu.auto_match.to_s.capitalize %></td>
+          </tr>
+          <tr>
+            <td class="has-text-weight-bold has-text-success-dark">Availability</td>
+            <td><%= @bu.availability %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="column">
+      <h4>Description</h4>
+      <p><%= @bu.description %></p>
+    </div>
+  </div>
+
+  <!--Requests-->
+  <% if @bu.requests.any? %>
+    <h2>Requests</h2>
+    <table class="table is-striped is-hoverable is-fullwidth mt-2">
+      <thead>
+        <th>Requested by</th>
+        <th>Created</th>
+        <th>Message</th>
+        <th>Status</th>
+        <th></th>
+      </thead>
+      <tbody>
+      <% @bu.requests.each do |request| %>
+        <tr>
+          <td class="is-vcentered"><%= request.user.name %></td>
+          <td class="is-vcentered"><%= request.created_at.strftime("%e %b %Y %H:%M:%S") %></td>
+          <td class="is-vcentered"><%= request.message %></td>
+          <td class="is-vcentered"><%= request.status.capitalize %></td>
+          <td class="is-vcentered"><%= link_to "Delete", admin_request_delete_path(request), class: "button is-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this Request? The user will not be informed."} %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <!--Favourites-->
+  <% if @bu.favourites.any? %>
+    <h2>Favourites</h2>
+    <table class="table is-striped is-hoverable is-fullwidth mt-2">
+      <thead>
+        <th>Favourited by</th>
+        <th>Date</th>
+        <th></th>
+      </thead>
+      <tbody>
+      <% @bu.favourites.each do |fav| %>
+        <tr>
+          <td class="is-vcentered"><%= fav.user.name %></td>
+          <td class="is-vcentered"><%= fav.created_at.strftime("%e %b %Y %H:%M:%S") %></td>
+          <td class="is-vcentered"><%= link_to "Delete", admin_favourite_delete_path(fav), class: "button is-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this Favourite? The user will not be informed."} %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <!--Admin actions-->
+  <hr class="navbar-divider">
+  <div class="block is-flex pt-3">
+    <%= link_to "Set status: Active", admin_bup_set_active_path(@bu), class: "button mr-3 is-info" unless @bu.active? %>
+    <%= link_to "Set status: Archive", admin_bup_set_archived_path(@bu), class: "button mr-3 is-info" unless @bu.archived? %>
+    <%= link_to "Set status: Complete", admin_bup_set_complete_path(@bu), class: "button mr-3 is-info" unless @bu.complete? %>
+    <%= link_to "Delete this BU", admin_bup_delete_path(@bu), class: "button is-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this BuddyUp? The user will not be informed."} %>
+  </div>
+
+<% end %>

@@ -4,6 +4,7 @@ puts "Development seed running."
 # ---------------------- Add your seed code in this block ----------------------
 # Clear existing data from database
 puts "Clearing all data from the database..."
+SocialLink.destroy_all
 Request.destroy_all
 Feedback.destroy_all
 Favourite.destroy_all
@@ -92,6 +93,11 @@ puts ""
 puts "Creating Favourites..."
 load(Rails.root.join( 'db', 'seeds', 'partials', '_favourites.rb'))
 puts "...done. #{Favourite.all.count} Favourites added to the database."
+
+# Social Links
+puts "Creating Social Links..."
+load(Rails.root.join( 'db', 'seeds', 'partials', '_social_links.rb'))
+puts "...done. #{SocialLink.all.count} Social Links added across all of the users."
 # ------------------------------------------------------------------------------
 
 puts "Development seed complete."
