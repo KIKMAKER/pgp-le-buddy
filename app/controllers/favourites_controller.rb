@@ -11,7 +11,7 @@ class FavouritesController < ApplicationController
   def delete
     # Find the favourites for this user and this BuddyUp.
     @buddy_up = BuddyUp.find(params[:bu])
-    @profile = @profile = current_user.profile
+    @profile = current_user.profile
     @favourites = Favourite.where(buddy_up: @buddy_up, profile: @profile)
 
     # There should be only one, but regardless destroy them all.

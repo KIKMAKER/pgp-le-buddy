@@ -1,8 +1,11 @@
 class BuddyUpsController < ApplicationController
   def index
     # This renders the global "Marketplace" page.
-    @buddy_ups = BuddyUp.where(status: "active")
-    @profile = current_user.profile
+    @buddy_ups = BuddyUp.includes(
+      :challenge,
+      :favourites
+    ).where(status: "active")
+    @profile = Profile.where(user: current_user).load_async
   end
 
   def admin_set_status_active
@@ -41,7 +44,7 @@ class BuddyUpsController < ApplicationController
     if params[:query].present?
       @bups = BuddyUp.search(params[:query])
     else
-      @bups = BuddyUp.all
+      @bups = BuddyUp.includes(:user).all
     end
     # render partial: "admin_index"
   end

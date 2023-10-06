@@ -27,9 +27,9 @@ class AppFeedbacksController < ApplicationController
     # If there was a search form submission, do the search,
     # otherwise return all AppFeedbacks
     if params[:query].present?
-      @app_feedbacks = AppFeedback.search(params[:query])
+      @app_feedbacks = AppFeedback.includes(:user).search(params[:query])
     else
-      @app_feedbacks = AppFeedback.all
+      @app_feedbacks = AppFeedback.includes(:user).all
     end
   end
 
