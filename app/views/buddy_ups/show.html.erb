@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5" data-controller="modal">
   <div class="card">
     <header class="card-header">
       <h1 class="card-header-title custom-header">
@@ -19,7 +19,25 @@
         <%= image_tag "#{@buddy_up.challenge.module}.png" %>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">Accept Buddy Up</a>
+      <button class="js-modal-trigger card-footer-item" data-action="click->modal#openModal">
+        Accept Buddy Up
+      </button>
+      </footer>
+    </div>
+  </div>
+  <div id="accept-buddyup-modal" class="modal" data-modal-target="modaldiv" data-action="keydown.esc->modal#closeModal">
+    <div class="modal-background" data-action="click->modal#closeModal"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Modal title</p>
+        <button class="delete" aria-label="close" data-action="click->modal#closeModal"></button>
+      </header>
+      <section class="modal-card-body">
+        <!-- Content ... -->
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success">Save changes</button>
+        <button class="button" data-action="click->modal#closeModal">Cancel</button>
       </footer>
     </div>
   </div>
