@@ -1,0 +1,54 @@
+<div class="is-flex">
+	<div class="is-flex is-flex-direction-column">
+		<%= render "admin/shared/admin_nav" %>
+		<div class="is-flex-grow-1"></div>
+	</div>
+
+	<main class="m-4 box content is-flex-grow-1">
+
+    <div class="is-flex">
+      <div>
+        <h1 class="title">App Feedbacks</h1>
+        <p class="subtitle">All user submitted feedback</p>
+      </div>
+      <div class="is-flex-grow-1">
+        <!--Search form-->
+        <%= form_with url: admin_app_feedbacks_path, method: :get, class: "is-pulled-right" do %>
+        <div class="field has-addons">
+          <div class="control">
+            <%= text_field_tag :query, params[:query], class: "input", placeholder: "Search App Feedbacks" %>
+          </div>
+          <div class="control">
+            <%= submit_tag "Search", class: "button is-info" %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!--Table listing the results-->
+    <% if @app_feedbacks.any? %>
+      <table class="table is-striped is-hoverable is-fullwidth mt-6">
+        <thead>
+          <th>Title</th>
+          <th>User</th>
+          <th>Submitted</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @app_feedbacks.each do |af| %>
+            <tr>
+              <td class="is-vcentered"><%= af.title %></td>
+              <td class="is-vcentered"><%= af.user.name %></td>
+              <td class="is-vcentered"><%= af.datetime.strftime("%e %b %Y %H:%M") %></td>
+              <td class="is-vcentered"><%= link_to "View", admin_app_feedback_path(af), class: "button is-info is-pulled-right" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="mt-6">No App Feedbacks to display.</p>
+    <% end %>
+    
+  </main>
+</div>

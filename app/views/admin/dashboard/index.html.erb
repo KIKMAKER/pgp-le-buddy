@@ -1,11 +1,10 @@
 <div class="is-flex">
 	<div class="is-flex is-flex-direction-column">
-		<%= render "admin_nav" %>
+		<%= render "admin/shared/admin_nav" %>
 		<div class="is-flex-grow-1"></div>
 	</div>
 
 	<main class="m-4 box content is-flex-grow-1">
-		<%= turbo_frame_tag "main" do %>
 
 			<h1 class="title">LeBuddy at a glance</h1>
 			<div class="columns is-8 mt-6">
@@ -29,6 +28,5 @@
 				</div>
 			</div>
 
-		<% end %>
 	</main>
 </div>

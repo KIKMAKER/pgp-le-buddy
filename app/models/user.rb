@@ -38,4 +38,22 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
+  def change_status(change)
+    case change
+    when "make_active"
+      self.active!
+    when "make_away"
+      self.away!
+    when "make_dummy"
+      self.dummy!
+    when "make_admin"
+      self.admin = true
+      self.save
+    when "remove_admin"
+      self.admin = false
+      self.save
+    end
+  end
+
 end

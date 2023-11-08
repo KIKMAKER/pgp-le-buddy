@@ -12,30 +12,12 @@ class AppFeedbacksController < ApplicationController
     @app_feedback.user = current_user
     @app_feedback.datetime = Time.now
     if @app_feedback.save!
-      # This needs some consideration depending on where the link to the new form
-      # will appear in the app. Sending them to the marketplace is probably a
-      # good option but that part of the app is still in PR at the time of writing
-      # this. Also, add a flash message to confirm it submitted.
-      redirect_to root_path
+      flash[:notice] = "Thank you for your feedback!"
+      redirect_to dashboard_path
     else
+      flash[:alert] = "Feedback submission failed."
       render new_app_feedback_path, status: :unprocessable_entity
     end
-  end
-
-  def admin_index
-    redirect_to root_path and return unless valid_referer?
-    # If there was a search form submission, do the search,
-    # otherwise return all AppFeedbacks
-    if params[:query].present?
-      @app_feedbacks = AppFeedback.includes(:user).search(params[:query])
-    else
-      @app_feedbacks = AppFeedback.includes(:user).all
-    end
-  end
-
-  def admin_show
-    redirect_to root_path and return unless valid_referer?
-    @app_feedback = AppFeedback.find(params[:id])
   end
 
   private

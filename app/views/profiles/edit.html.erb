@@ -41,39 +41,19 @@
         <% end %>
       </div>
     </div>
-
-    <%#= render partial: "preview", locals: { profile: @profile } %>
-
+    
     <div class="card">
-      <div class="card-header">
-      </div>
       <div class="card-content">
-        <div class="two-column">
-          <div>
-            <% if @profile.user.avatar_url.nil? %>
-              <%= image_tag "Default_profile.png", class:"profile-avatar" %>
-            <% else %>
-              <%= image_tag @profile.user.avatar_url, class:"profile-avatar" %>
-            <% end %>
-            <h3 id="profile-name"><%= @profile.user.name %></h3>
-            <p>Batch #<%= @profile.batch %></p>
-            <% if @profile.show_email %>
-              <p>Email: <%= @profile.user.email %></p>
-            <% end %>
-          </div>
-          <p class="m-auto"><%= @profile.bio %></p>
-        </div>
-        <hr>
-        <h6>Languages</h6>
-        <div class="languages">
-          <% @profile.languages.each do |language|%>
-            <p class="tag is-info"><%= language.name %></p>
+      <%= link_to "✖", profile_path(@profile), class: "profile-edit-close" %>
+        <div class="profile-form">
+          <%= simple_form_for @profile do |f| %>
+            <%= f.input :bio, placeholder: "Tell us about yourself..." %>
+            <%= f.input :batch, placeholder: "1122" %>
+            <%= f.input :show_email %>
+            <%= f.button :submit, class: "button is-primary" %>
           <% end %>
         </div>
-        <br>
-        <% if current_user == @profile.user %>
-          <%= link_to "Edit Profile", edit_profile_path(@profile), class:"button is-primary"%>
-        <% end %>
+        <%= render partial: 'profile_languages/languages', locals: { profile_language: @new_profile_language, profile_languages: @profile_languages } %>
       </div>
     </div>
 

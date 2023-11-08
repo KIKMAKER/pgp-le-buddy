@@ -1,0 +1,105 @@
+<div class="is-flex">
+	<div class="is-flex is-flex-direction-column">
+		<%= render "admin/shared/admin_nav" %>
+		<div class="is-flex-grow-1"></div>
+	</div>
+
+	<main class="m-4 box content is-flex-grow-1">
+
+    <!--Avatar and name-->
+    <div class="is-flex is-align-items-center mb-6 pl-5 pr-5">
+      <div>
+        <figure class="image is-128x128 m-0 mr-5"><img class="is-rounded" src="<%= @user.avatar_url %>" /></figure>
+      </div>
+      <div class="is-flex-grow-1">
+        <h1 class="title"><%= @user.name %></h1>
+        <p class="subtitle mb-2"><%= @user.email %></p>
+        <% if @user.admin %>
+          <p class="has-text-weight-bold has-text-danger-dark">Administrator</p>
+        <% end %>
+      </div>
+      <div>
+        <p class="title"><%= @user.status.capitalize %></p>
+      </div>
+    </div>
+
+    <!--Stat counters-->
+    <hr class="navbar-divider">
+    <nav class="level is-mobile mt-5">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">BuddyUps</p>
+          <p class="title"><%= @user.profile.buddy_ups.count %></p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Requests</p>
+          <p class="title"><%= @user.profile.requests.count %></p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Favourites</p>
+          <p class="title"><%= @user.profile.favourites.count %></p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Feedbacks</p>
+          <p class="title"><%= @user.profile.feedbacks.count %></p>
+        </div>
+      </div>
+    </nav>
+    <hr class="navbar-divider">
+
+    <!--Profile details-->
+    <div class="columns mt-5 is-8">
+      <div class="column">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-success-dark">Join date</td>
+              <td><%= @user.created_at.strftime("%e %B %Y") %></td>
+            </tr>
+            <tr>
+              <td class="has-text-weight-bold has-text-success-dark">Github name</td>
+              <td><%= link_to "#{@user.github_name}", "https://github.com/#{@user.github_name}", target: "_blank" %></td>
+            </tr>
+            <tr>
+              <td class="has-text-weight-bold has-text-success-dark">Languages</td>
+              <td>
+                <% @user.profile.profile_languages.each do |p_l| %>
+                  <%= "#{p_l.language.name}, " %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class="has-text-weight-bold has-text-success-dark">Socials</td>
+              <td>
+                <% @user.social_links.each do |s_l| %>
+                  <a href="<%= s_l.url %>" target="_blank"><%= s_l.name %></a>,
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="column">
+        <h4>Bio</h4>
+        <p><%= @user.profile.bio %></p>
+      </div>
+    </div>
+
+    <!--Admin actions-->
+    <hr class="navbar-divider">
+    <div class="block is-flex pt-3">
+      <%= button_to "Set status: Active", admin_user_path(@user), params: { status_change: "make_active" }, method: :patch, class: "button mr-3 is-info" unless @user.active? %>
+      <%= button_to "Set status: Away", admin_user_path(@user), params: { status_change: "make_away" }, method: :patch, class: "button mr-3 is-info" unless @user.away? %>
+      <%= button_to "Set status: Dummy", admin_user_path(@user), params: { status_change: "make_dummy" }, method: :patch, class: "button mr-3 is-info" unless @user.dummy? %>
+      <%= button_to "Remove Administrator", admin_user_path(@user), params: { status_change: "remove_admin" }, method: :patch, class: "button is-danger" if @user.admin %>
+      <%= button_to "Make Administrator", admin_user_path(@user), params: { status_change: "make_admin" }, method: :patch, class: "button is-danger" unless @user.admin %>
+    </div>
+
+  </main>
+</div>

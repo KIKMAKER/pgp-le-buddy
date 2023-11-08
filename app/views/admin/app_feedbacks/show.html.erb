@@ -1,0 +1,46 @@
+<div class="is-flex">
+	<div class="is-flex is-flex-direction-column">
+		<%= render "admin/shared/admin_nav" %>
+		<div class="is-flex-grow-1"></div>
+	</div>
+
+	<main class="m-4 box content is-flex-grow-1">
+
+    <!--Name and status-->
+    <div class="is-flex is-align-items-center mb-6 pl-5 pr-5">
+      <div class="is-flex-grow-1">
+        <h2 class="title has-text-grey">App Feedbacks / <span class="title has-text-black"><%= @app_feedback.title %></span></h2>
+      </div>
+      <div>
+        <p class="title"><!--Status will go here--></p>
+      </div>
+    </div>
+
+    <!--App Feedback details-->
+    <div class="columns is-8">
+      <div class="column">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td class="has-text-weight-bold has-text-success-dark">User</td>
+              <td><%= link_to "#{@app_feedback.user.name}", admin_user_path(@app_feedback.user), class: "has-text-black" %></td>
+            </tr>
+            <tr>
+              <td class="has-text-weight-bold has-text-success-dark">Submitted</td>
+              <td><%= @app_feedback.datetime.strftime("%e %b %Y %H:%M") %></td>
+            </tr>
+  <!--          <tr>
+              <td class="has-text-weight-bold has-text-success-dark">Reviewed by</td>
+              <td>Reviewer name here</td>
+            </tr>-->
+          </tbody>
+        </table>
+      </div>
+      <div class="column">
+        <h4>Contents</h4>
+        <p><%= @app_feedback.contents %></p>
+      </div>
+    </div>
+
+  </main>
+</div>
