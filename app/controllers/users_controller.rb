@@ -13,7 +13,14 @@ class UsersController < ApplicationController
 
   def admin_show
     redirect_to root_path and return unless valid_referer?
-    @user = User.find(params[:id])
+    @user = User.includes(
+      :profile,
+      :social_links,
+      :buddy_ups,
+      :favourites,
+      :requests,
+      :profile_languages
+    ).find(params[:id])
   end
 
   def admin_set_away

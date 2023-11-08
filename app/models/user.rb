@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_one :profile
   has_many :social_links, dependent: :destroy
   has_many :buddy_ups, through: :profile
+  has_many :favourites, through: :profile
+  has_many :requests, through: :profile
+  has_many :profile_languages, through: :profile
 
   # Set up pg_search
   include PgSearch::Model
