@@ -1,5 +1,5 @@
 class FavouritesController < ApplicationController
-  def fav
+  def create
     @buddy_up = BuddyUp.find(params[:bu])
     @profile = current_user.profile
     @favourite = Favourite.new
@@ -8,9 +8,9 @@ class FavouritesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     # Find the favourites for this user and this BuddyUp.
-    @buddy_up = BuddyUp.find(params[:bu])
+    @buddy_up = BuddyUp.find(params[:id])
     @profile = current_user.profile
     @favourites = Favourite.where(buddy_up: @buddy_up, profile: @profile)
 
@@ -24,11 +24,4 @@ class FavouritesController < ApplicationController
     render partial: "favourites/dashboard_index", locals: { fav_bups: @fav_bups }
   end
 
-  def admin_delete
-    redirect_to root_path and return unless valid_referer?
-    @fav = Favourite.find(params[:id])
-    @bu = @fav.buddy_up
-    @fav.destroy
-    render "buddy_ups/admin_show"
-  end
 end

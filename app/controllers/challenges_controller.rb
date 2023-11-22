@@ -3,22 +3,6 @@ class ChallengesController < ApplicationController
     @challenges = Challenge.all
   end
 
-  def admin_index
-    redirect_to root_path and return unless valid_referer?
-    # If there was a search form submission, do the search,
-    # otherwise return all challenges
-    if params[:query].present?
-      @challenges = Challenge.search(params[:query])
-    else
-      @challenges = Challenge.all
-    end
-  end
-
-  def admin_edit
-    redirect_to root_path and return unless valid_referer?
-    @challenge = Challenge.find(params[:id])
-  end
-
   def update
     @challenge = Challenge.find(params[:id])
     if @challenge.update(challenge_params) && valid_referer?

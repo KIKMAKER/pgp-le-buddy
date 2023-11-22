@@ -20,15 +20,4 @@ class PagesController < ApplicationController
     @fav_bups = @profile.fav_buddy_ups
   end
 
-  def admin
-    if current_user.admin
-      @active_users_count = User.where(status: :active).count
-      @away_users_count = User.where(status: :away).count
-      @active_bups = BuddyUp.where(status: :active).count
-      @complete_bups = BuddyUp.where(status: :complete).count
-    else
-      redirect_to root_path
-    end
-  end
-
 end

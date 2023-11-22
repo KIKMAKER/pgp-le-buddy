@@ -1,56 +1,35 @@
 Rails.application.routes.draw do
-
+  # Set up Devise
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' } #omniauth call back controller for github login
+
+  # Root path
   root to: "pages#home"
 
+  # Static pages for users not logged in
   get "/terms", to: "pages#terms"
   get "/privacy", to: "pages#privacy"
   get "/team", to: "pages#team"
-  get "/dashboard", to: "pages#dashboard"
-  get "/edit_profile", to: "profiles#edit_profile"
-  get "/preview", to: "profiles#preview"
-  get "/favourite_fav", to: "favourites#fav"
-  get "/favourite_del", to: "favourites#delete"
 
-  resources :challenges, except: %i[edit new destroy]
-  resources :app_feedbacks, except: %i[destroy]
-  resources :buddy_ups, only: %i[index show]
-  resources :profiles, only: %i[index show new create update]
+  # User-facing side of the app for logged in users
+  get "/dashboard", to: "pages#dashboard"
+  resources :challenges, except: %i[ edit new create destroy ]
+  resources :app_feedbacks, only: %i[ new create ]
+  resources :buddy_ups, only: %i[ index show ]
+  resources :profiles, only: %i[ show new create edit update ]
   resources :social_links, only: :create
   resources :requests
-  resources :profile_languages, only: %i[create destroy]
+  resources :profile_languages, only: %i[ create destroy ]
+  resources :favourites, only: %i[ create destroy ]
 
-  # --------------- Admin dashboard ---------------
-  get "/admin", to: "pages#admin"
+  # Admin dashboard for users that are administrators
+  namespace :admin do
+    get "dashboard", controller: "dashboard", action: "index"
+    resources :users, only: %i[ index show update ]
+    resources :challenges, only: %i[ index edit update ]
+    resources :app_feedbacks, only: %i[ index show ]
+    resources :buddy_ups, only: %i[ index show update destroy ]
+    resources :requests, only: %i[ destroy ]
+    resources :favourites, only: %i[ destroy ]
+  end
 
-  # navbar
-  get "/admin/users", to: "users#admin_index"
-  get "/admin/bups", to: "buddy_ups#admin_index", as: "admin_bups_index"
-  get "/admin/challenges", to: "challenges#admin_index"
-  get "/admin/app_feedbacks", to: "app_feedbacks#admin_index"
-
-  # Users
-  get "/admin/users/:id", to: "users#admin_show", as: "admin_user_show"
-  get "/admin/set_away/:id", to: "users#admin_set_away", as: "set_away"
-  get "/admin/set_active/:id", to: "users#admin_set_active", as: "set_active"
-  get "/admin/set_dummy/:id", to: "users#admin_set_dummy", as: "set_dummy"
-  get "/admin/toggle_admin/:id", to: "users#admin_toggle_admin", as: "toggle_admin"
-
-  # BuddyUps
-  get "/admin/bups/:id", to: "buddy_ups#admin_show", as: "admin_bup_show"
-  get "/admin/bups/user/:id", to: "buddy_ups#admin_bups_user", as: "admin_bups_user"
-  get "admin/bups/active/:id", to: "buddy_ups#admin_set_status_active", as: "admin_bup_set_active"
-  get "admin/bups/archived/:id", to: "buddy_ups#admin_set_status_archived", as: "admin_bup_set_archived"
-  get "admin/bups/complete/:id", to: "buddy_ups#admin_set_status_complete", as: "admin_bup_set_complete"
-  delete "/admin/buddy_ups/:id", to: "buddy_ups#admin_delete", as: "admin_bup_delete"
-  delete "/admin/requests/:id", to: "requests#admin_delete", as: "admin_request_delete"
-  delete "/admin/favourites/:id", to: "favourites#admin_delete", as: "admin_favourite_delete"
-
-  # Challenges
-  get "/admin/challenges/:id/edit", to: "challenges#admin_edit", as: "admin_edit_challenge"
-
-  # App Feedbacks
-  get "/admin/app_feedbacks/:id", to: "app_feedbacks#admin_show", as: "admin_app_feedback"
-
-  # ------------- end admin dashboard -------------
 end
