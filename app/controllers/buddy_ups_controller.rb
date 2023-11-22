@@ -6,5 +6,6 @@ class BuddyUpsController < ApplicationController
 
   def show
     @buddy_up = BuddyUp.find(params[:id])
+    @request = Request.new
   end
 end

@@ -20,7 +20,7 @@
       </div>
       <footer class="card-footer">
       <button class="js-modal-trigger card-footer-item" data-action="click->modal#openModal">
-        Accept Buddy Up
+        Request Buddy Up
       </button>
       </footer>
     </div>
@@ -29,16 +29,25 @@
     <div class="modal-background" data-action="click->modal#closeModal"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Modal title</p>
+        <p class="modal-card-title">Buddy Up Request</p>
         <button class="delete" aria-label="close" data-action="click->modal#closeModal"></button>
       </header>
       <section class="modal-card-body">
-        <!-- Content ... -->
+        <p> Choose to buddy up with <%= @buddy_up.profile.user.name %> </p>
+        <br>
+        <p> Available: <%= @buddy_up.availability %></p>
+        <br>
+        <%= simple_form_for @buddy_up do |f| %>
+          <%= f.input :requests %>
+          <br>
       </section>
       <footer class="modal-card-foot">
-        <button class="button is-success">Save changes</button>
+        <button class="button is-success">Send your request
+          <%= f.button :submit, style: "display: none;"%>
+        </button>
         <button class="button" data-action="click->modal#closeModal">Cancel</button>
       </footer>
+        <% end %>
     </div>
   </div>
 </div>
