@@ -4,8 +4,10 @@ puts "Development seed running."
 # ---------------------- Add your seed code in this block ----------------------
 # Clear existing data from database
 puts "Clearing all data from the database..."
+SocialLink.destroy_all
 Request.destroy_all
 Feedback.destroy_all
+Favourite.destroy_all
 BuddyUp.destroy_all
 Challenge.destroy_all
 AppFeedback.destroy_all
@@ -14,6 +16,8 @@ Profile.destroy_all
 Language.destroy_all
 User.destroy_all
 puts "Requests: #{Request.all.count}"
+puts "Feedbacks: #{Feedback.all.count}"
+puts "Favourites: #{Favourite.all.count}"
 puts "BuddyUps: #{BuddyUp.all.count}"
 puts "Challenges: #{Challenge.all.count}"
 puts "AppFeeback: #{AppFeedback.all.count}"
@@ -25,16 +29,16 @@ puts "...done."
 puts ""
 
 # Test user account
-User.create(email: "test@test.com", password: "123456", name: "Tester", github_name: "Bot1234", avatar_url: "https://avatars.githubusercontent.com/u/91339335?v=4")
+User.create(email: "test@test.com", password: "123456", name: "Tester", github_name: "Bot1234", avatar_url: "https://avatars.githubusercontent.com/u/91339335?v=4", status: 1, admin: true)
 puts "Test user created: test@test.com, 123456"
 puts ""
 
 # Users
 puts "Creating Persona users..."
-User.create(email: "shane@shane.com", password: "123456", name: "Shane", github_name: "Shan3", avatar_url: "https://avatars.githubusercontent.com/u/6637209?v=4")
-User.create(email: "joni@joni.com", password: "123456", name: "Joni", github_name: "Jon1", avatar_url: "https://avatars.githubusercontent.com/u/113447311?v=4")
-User.create(email: "mitch@mitch.com", password: "123456", name: "Mitch", github_name: "Mitchy", avatar_url: "https://avatars.githubusercontent.com/u/130841358?v=4")
-User.create(email: "kira@kira.com", password: "123456", name: "Kira", github_name: "Kira49", avatar_url: "https://avatars.githubusercontent.com/u/53060901?v=4")
+User.create(email: "shane@shane.com", password: "123456", name: "Shane", github_name: "Shan3", avatar_url: "https://avatars.githubusercontent.com/u/6637209?v=4", status: 1)
+User.create(email: "joni@joni.com", password: "123456", name: "Joni", github_name: "Jon1", avatar_url: "https://avatars.githubusercontent.com/u/113447311?v=4", status: 1)
+User.create(email: "mitch@mitch.com", password: "123456", name: "Mitch", github_name: "Mitchy", avatar_url: "https://avatars.githubusercontent.com/u/130841358?v=4", status: 1)
+User.create(email: "kira@kira.com", password: "123456", name: "Kira", github_name: "Kira49", avatar_url: "https://avatars.githubusercontent.com/u/53060901?v=4", status: 1)
 puts "...done. #{User.all.count - 1} users created."
 puts ""
 
@@ -84,6 +88,16 @@ BuddyUp.where(status: :complete).each do |buddy_up|
 end
 puts "...done. #{Feedback.all.count} Feedbacks added to the database."
 puts ""
+
+# Favourites
+puts "Creating Favourites..."
+load(Rails.root.join( 'db', 'seeds', 'partials', '_favourites.rb'))
+puts "...done. #{Favourite.all.count} Favourites added to the database."
+
+# Social Links
+puts "Creating Social Links..."
+load(Rails.root.join( 'db', 'seeds', 'partials', '_social_links.rb'))
+puts "...done. #{SocialLink.all.count} Social Links added across all of the users."
 # ------------------------------------------------------------------------------
 
 puts "Development seed complete."

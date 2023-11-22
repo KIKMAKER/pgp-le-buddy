@@ -1,0 +1,56 @@
+<div class="is-flex">
+	<div class="is-flex is-flex-direction-column">
+		<%= render "admin/shared/admin_nav" %>
+		<div class="is-flex-grow-1"></div>
+	</div>
+
+	<main class="m-4 box content is-flex-grow-1">
+
+    <div class="is-flex">
+      <div>
+        <h1 class="title">Users and Profiles</h1>
+        <p class="subtitle">All users, regardless of status. View their details to see more and make changes.</p>
+      </div>
+      <div class="is-flex-grow-1">
+        <!--Search form-->
+        <%= form_with url: admin_users_path, method: :get, class: "is-pulled-right" do %>
+        <div class="field has-addons">
+          <div class="control">
+            <%= text_field_tag :query, params[:query], class: "input", placeholder: "Search users" %>
+          </div>
+          <div class="control">
+            <%= submit_tag "Search", class: "button is-info" %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!--Table listing the results-->
+    <% if @users.any? %>
+      <table class="table is-striped is-hoverable is-fullwidth mt-6">
+        <thead>
+          <th></th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td class="is-vcentered"><figure class="image is-32x32"><img class="is-rounded" src="<%= user.avatar_url %>" /></figure></td>
+              <td class="is-vcentered"><%= user.name %></td>
+              <td class="is-vcentered"><%= user.email %></td>
+              <td class="is-vcentered"><%= user.status.capitalize %><%= " & Admin" if user.admin %></td>
+              <td class="is-vcentered"><%= link_to "View", admin_user_path(user), class: "button is-info is-pulled-right" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="mt-6">No users to display.</p>
+    <% end %>
+
+  </main>
+</div>

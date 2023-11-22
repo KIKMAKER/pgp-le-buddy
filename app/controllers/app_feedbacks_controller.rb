@@ -12,12 +12,10 @@ class AppFeedbacksController < ApplicationController
     @app_feedback.user = current_user
     @app_feedback.datetime = Time.now
     if @app_feedback.save!
-      # This needs some consideration depending on where the link to the new form
-      # will appear in the app. Sending them to the marketplace is probably a
-      # good option but that part of the app is still in PR at the time of writing
-      # this. Also, add a flash message to confirm it submitted.
-      redirect_to root_path
+      flash[:notice] = "Thank you for your feedback!"
+      redirect_to dashboard_path
     else
+      flash[:alert] = "Feedback submission failed."
       render new_app_feedback_path, status: :unprocessable_entity
     end
   end
