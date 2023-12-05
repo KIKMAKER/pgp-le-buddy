@@ -38,7 +38,7 @@
         <p> Available: <%= @buddy_up.availability %></p>
         <br>
         <%= simple_form_for @request do |f| %>
-          <%= f.input :message %>
+          <%= f.input :message, label: "Send a message to #{@buddy_up.profile.user.name}:"%>
           <br>
       </section>
       <footer class="modal-card-foot">
