@@ -1,4 +1,4 @@
-<div class="container mt-5" data-controller="modal">
+<div class="container mt-5 is-max-desktop buddy-grid" data-controller="modal">
   <div class="card">
     <header class="card-header">
       <h1 class="card-header-title custom-header">
@@ -37,8 +37,8 @@
         <br>
         <p> Available: <%= @buddy_up.availability %></p>
         <br>
-        <%= simple_form_for @buddy_up do |f| %>
-          <%= f.input :requests %>
+        <%= simple_form_for @request do |f| %>
+          <%= f.input :message %>
           <br>
       </section>
       <footer class="modal-card-foot">
