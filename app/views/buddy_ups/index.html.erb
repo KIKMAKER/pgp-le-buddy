@@ -27,6 +27,7 @@
         </div>
         <div class="card-footer buddy-card-footer">
           <%= link_to "View details", buddy_up, class: "card-footer-item" %>
+          <%= render partial: "favourites/favourite_button", locals: { buddy_up:, profile: @profile } %>
         </div>
       </div>
     <% end %>

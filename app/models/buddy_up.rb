@@ -2,11 +2,22 @@ class BuddyUp < ApplicationRecord
   belongs_to :profile
   belongs_to :challenge
   has_many :requests, dependent: :destroy
-  has_many :feedbacks
+  has_many :feedbacks, dependent: :destroy
+  has_many :favourites, dependent: :destroy
   has_one :user, through: :profile
 
   validates :name, :description, :challenge, :profile, presence: true
   enum :status, { active: 0, archived: 1, complete: 2 }, default: :active
+
+  # Set up pg_search
+  include PgSearch::Model
+  pg_search_scope :search,
+    against: [ :name, :description, :availability, :status ],
+    associated_against: {
+      requests: [ :status, :message ],
+      feedbacks: [ :message, :work_again ]
+    },
+    using: { tsearch: { prefix: true } }
 
   def self.active_list(profile)
     buddy_ups = BuddyUp.where(profile: , status: :active)
@@ -43,5 +54,16 @@ class BuddyUp < ApplicationRecord
     all = BuddyUp.where(profile:).count
     archived = BuddyUp.where(profile:).where(status: :archived).count.to_f
     (archived / all) * 100
+  end
+
+  def change_status(change)
+    case change
+    when "make_active"
+      self.active!
+    when "make_archived"
+      self.archived!
+    when "make_complete"
+      self.complete!
+    end
   end
 end

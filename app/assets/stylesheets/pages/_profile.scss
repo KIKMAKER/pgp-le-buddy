@@ -1,0 +1,73 @@
+.two-column {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin: 0 auto;
+}
+
+.two-column > :first-child {
+  flex-basis: 250px;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.two-column > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: 50%;
+}
+
+.languages {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  p {
+    width: max-content;
+  }
+}
+
+.profile-avatar {
+  border-radius: 50%;
+  width: 180px;
+}
+
+#profile-name {
+  margin: 0;
+}
+
+.profile-edit-close {
+  display: flex;
+  justify-content: flex-end;
+  color: black;
+  margin-bottom: 5px;
+}
+
+.profile-form > :first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  // .profile-bio comes from simple form
+  input[type="submit"] {
+    width: 175px;
+  }
+  .profile_bio {
+    height: 180px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin: 0 auto;
+    :first-child {
+      flex-basis: 50px;
+      flex-grow: 1;
+      text-align: start;
+    }
+    :last-child {
+      width: 100%;
+      height: 100%;
+      flex-basis: 0;
+      flex-grow: 999;
+      min-inline-size: 50%;
+    }
+  }
+}

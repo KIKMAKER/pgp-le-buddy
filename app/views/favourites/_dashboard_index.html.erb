@@ -1,0 +1,23 @@
+<turbo-frame id="dashboard-fav-index">
+  <h2>My favourite BuddyUps 🌟</h2>
+  <div class="table-container">
+    <table class="table is-hoverable is-fullwidth is-striped">
+      <thead>
+        <th class="td-name">Name</th>
+        <th class="td">Buddy</th>
+        <th class="td"></th>
+        <th class="td"></th>
+      </thead>
+      <tbody>
+        <% fav_bups.each do |bu| %>
+          <tr>
+            <td class="td-name"><%= bu.name %></td>
+            <td class="td"><%= bu.user.name %></td>
+            <td class="td"><%= button_to "Remove", favourite_path(bu), method: :delete, class: "button is-danger is-light is-small" %></td>
+            <td class="td"><%= link_to "View", buddy_up_path(bu), class: "button is-info is-light is-small" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</turbo-frame>
