@@ -104,6 +104,40 @@
       </div>
     <% end %>
 
+    <% if @join_requests %>
+      <h2>My BuddyUps others want to join</h2>
+      <div class="table-container">
+        <table class="table is-hoverable is-fullwidth is-striped">
+          <thead>
+            <th class="td-name">Name</th>
+            <th class="td">Message</th>
+            <th class="td">Buddy</th>
+            <th class="td">Status</th>
+            <th class="td"></th>
+            <th class="td"></th>
+          </thead>
+          <tbody>
+            <% @join_requests.each do |re| %>
+              <tr>
+                <td class="td-name"><%= re.buddy_up.name %></td>
+                <td class="td"><%= re.message %></td>
+                <td class="td"><%= re.profile.user.name %></td>
+                <% if re.status == "approved" %>
+                  <td class="td"><span class="has-text-primary-dark has-text-weight-semibold"><%= re.status.capitalize %><span></td>
+                <% elsif re.status == "denied" %>
+                  <td class="td"><span class="has-text-danger-dark has-text-weight-semibold"><%= re.status.capitalize %><span></td>
+                <% else %>
+                  <td class="td"><%= re.status.capitalize %></td>
+                <% end %>
+                <td class="td"><%= button_to "Accept", request_path(re, action_to_take: "approved"), method: :patch, class: "button is-info is-light is-small" %></td>
+                <td class="td"><%= button_to "Reject", request_path(re, action_to_take: "denied"), method: :patch, class: "button is-info is-light is-small" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
     <% if @complete_bups %>
       <h2>Complete</h2>
       <div class="table-container">

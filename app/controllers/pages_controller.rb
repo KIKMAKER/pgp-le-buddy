@@ -18,6 +18,20 @@ class PagesController < ApplicationController
     @all_count = BuddyUp.all_count(@profile)
     @abandonment = BuddyUp.abandonment(@profile)
     @fav_bups = @profile.fav_buddy_ups
+    @join_requests = requested_from_me(@profile)
+  end
+
+  private
+
+  def requested_from_me(profile)
+    my_bups = BuddyUp.where(profile: profile)
+    requests = []
+    my_bups.each do |bu|
+      bu.requests.each do |re|
+        requests << re
+      end
+    end
+    return requests
   end
 
 end

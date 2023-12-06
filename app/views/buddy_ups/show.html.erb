@@ -37,17 +37,19 @@
         <br>
         <p> Available: <%= @buddy_up.availability %></p>
         <br>
+
         <%= simple_form_for @request do |f| %>
+          <%= hidden_field_tag(:buddy_up_id, @buddy_up.id) %>
           <%= f.input :message, label: "Send a message to #{@buddy_up.profile.user.name}:"%>
           <br>
-      </section>
+      <!--</section>-->
       <footer class="modal-card-foot">
         <button class="button is-success">Send your request
-          <%= f.button :submit, style: "display: none;"%>
+          <%= f.button :submit, style: "display: none;"  %>
         </button>
         <button class="button" data-action="click->modal#closeModal">Cancel</button>
-      </footer>
         <% end %>
+      </footer>
     </div>
   </div>
 </div>
