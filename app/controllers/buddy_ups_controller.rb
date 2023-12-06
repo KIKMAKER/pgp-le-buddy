@@ -9,4 +9,8 @@ class BuddyUpsController < ApplicationController
     @profile = Profile.where(user: current_user).load_async
   end
 
+  def show
+    @buddy_up = BuddyUp.find(params[:id])
+    @request = Request.new
+  end
 end
