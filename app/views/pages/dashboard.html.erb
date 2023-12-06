@@ -1,9 +1,17 @@
 <section class="content m-6">
-  <div class="container is-max-desktop">
-    <h1 class="title">My BuddyUps</h1>
-    <h4 class="mb-3">
-      All the BuddyUps you were involved in.
-    </h4>
+  <div class="container is-max-desktop is-flex">
+    <div class="is-flex-grow-1">
+        <h1 class="title">My BuddyUps</h1>
+        <h4 class="mb-3">
+          All the BuddyUps you were involved in.
+        </h4>
+    </div>
+    <div>
+      <%= link_to "Create new BuddyUp",
+                    new_buddy_up_path(source: "dashboard"),
+                    class: "button is-primary"
+      %>
+    </div>
   </div>
 </section>
 

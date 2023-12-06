@@ -1,7 +1,15 @@
 <section class="content m-6">
-  <div class="container is-max-desktop">
-    <h1>BuddyUp</h1>
-    <p>Join a BuddyUp to complete a challenge with some, or create your own!</p>
+  <div class="container is-max-desktop is-flex ">
+    <div class=" is-flex-grow-1">
+      <h1>BuddyUp</h1>
+      <p>Join a BuddyUp to complete a challenge with some, or create your own!</p>
+    </div>
+    <div>
+      <%= link_to "Create new BuddyUp",
+                    new_buddy_up_path(source: "buddy_up_index"),
+                    class: "button is-primary"
+      %>
+    </div>
   </div>
 </section>
 
@@ -33,5 +41,3 @@
     <% end %>
   </div>
 </section>
-
-
