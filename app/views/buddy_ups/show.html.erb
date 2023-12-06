@@ -1,0 +1,55 @@
+<div class="container mt-5 is-max-desktop buddy-grid" data-controller="modal">
+  <div class="card">
+    <header class="card-header">
+      <h1 class="card-header-title custom-header">
+        <%= @buddy_up.name %>
+      </h1>
+    </header>
+    <div class="card-content buddy-show-card-content">
+      <div class="content m-6">
+        <p > Description: <%= @buddy_up.description %> </p>
+        <p > Status: <%= @buddy_up.status %> </p>
+        <p > Availability: <%= @buddy_up.availability %> </p>
+        <p > Module: <%= @buddy_up.challenge.module %> </p>
+        <p > Skill: <%= @buddy_up.challenge.skill %> </p>
+        <p> Challenge Name: <%= @buddy_up.challenge.name %> </p>
+        <p> Buddy Up owner: <%= @buddy_up.profile.user.name %> </p>
+      </div>
+      <div class="buddy-card-watermark">
+        <%= image_tag "#{@buddy_up.challenge.module}.png" %>
+      </div>
+      <footer class="card-footer">
+      <button class="js-modal-trigger card-footer-item" data-action="click->modal#openModal">
+        Request Buddy Up
+      </button>
+      </footer>
+    </div>
+  </div>
+  <div id="accept-buddyup-modal" class="modal" data-modal-target="modaldiv" data-action="keydown.esc->modal#closeModal">
+    <div class="modal-background" data-action="click->modal#closeModal"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Buddy Up Request</p>
+        <button class="delete" aria-label="close" data-action="click->modal#closeModal"></button>
+      </header>
+      <section class="modal-card-body">
+        <p> Choose to buddy up with <%= @buddy_up.profile.user.name %> </p>
+        <br>
+        <p> Available: <%= @buddy_up.availability %></p>
+        <br>
+
+        <%= simple_form_for @request do |f| %>
+          <%= hidden_field_tag(:buddy_up_id, @buddy_up.id) %>
+          <%= f.input :message, label: "Send a message to #{@buddy_up.profile.user.name}:"%>
+          <br>
+      <!--</section>-->
+      <footer class="modal-card-foot">
+        <button class="button is-success">Send your request
+          <%= f.button :submit, style: "display: none;"  %>
+        </button>
+        <button class="button" data-action="click->modal#closeModal">Cancel</button>
+        <% end %>
+      </footer>
+    </div>
+  </div>
+</div>
