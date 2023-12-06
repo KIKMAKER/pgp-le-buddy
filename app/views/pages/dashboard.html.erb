@@ -1,9 +1,10 @@
 <section class="content m-6">
   <div class="container is-max-desktop">
-    <h1 class="title">My BuddyUps</h1>
-    <h4 class="mb-3">
-      All the BuddyUps you were involved in.
-    </h4>
+    <h1 class="title">Welcome to Your BuddyUp Hub!</h1>
+    <p>This is your personal space to track and manage all your collaborative learning journeys. Here, you can witness your progress, view your active BuddyUps, and even dive into some that you might have missed out on. Let's make learning more interactive and fun together!</p>
+    <h2 class="mb-3">
+      Your Progress and Statistics
+    </h2>
   </div>
 </section>
 
@@ -12,8 +13,11 @@
     <div class="box">
       <% if @count.positive? %>
         <div class="block">
+          <h4 class="mb-3">
+            Your BuddyUp Journey So Far
+          </h4>
           <p class="mb-3">
-            BuddyUp progress (<%= @complete_bups.nil? ? 0 : @complete_bups.count %>/<%= @count %> completed)
+            Keep track of how far you've come with your BuddyUps! Completed challenges are milestones in your learning path. You've completed <%= @complete_bups.nil? ? 0 : @complete_bups.count %>/<%= @count %>  BuddyUps. Keep up the great work!
           </p>
           <progress class="progress is-success" value=<%= @progress %> max="100"></progress>
         </div>
@@ -28,7 +32,11 @@
       <% end %>
       <% if @requested_bups %>
         <div class="block">
+          <h4 class="mb-3">
+            Your BuddyUp Connection Success
+          </h4>
           <p class="mb-3">
+            Networking is key! Here's how successful you've been in joining other BuddyUps. You have a <%= @request_success_rate %>% success rate with <%= @requested_bups.where(status: :approved).count %> approved requests out of <%= @requested_bups.count %>.
             Requests success rate (<%= @requested_bups.where(status: :approved).count %>/<%= @requested_bups.count %> requests approved)
           </p>
           <progress class="progress is-primary" value=<%= @request_success_rate %> max="100"></progress>
@@ -45,7 +53,8 @@
   <div class="container is-max-desktop">
 
     <% if @active_bups %>
-      <h2>My active BuddyUps</h2>
+      <h2>Your Current Learning Partnerships</h2>
+      <p>These are the BuddyUps you're actively participating in. Collaborate, learn, and grow together. Take a glance at your current projects and the amazing people you're working with!</p>
       <div class="table-container">
         <table class="table is-hoverable is-fullwidth is-striped">
           <thead>
@@ -75,7 +84,8 @@
     <% end %>
 
     <% if @requested_bups %>
-      <h2>BuddyUps I requested to join</h2>
+      <h2>BuddyUp Requests You've Made</h2>
+      <p>Curiosity leads to growth! These are the BuddyUps you've shown interest in joining. Keep an eye on their status and get ready to dive into new learning adventures.</p>
       <div class="table-container">
         <table class="table is-hoverable is-fullwidth is-striped">
           <thead>
@@ -105,7 +115,8 @@
     <% end %>
 
     <% if @complete_bups %>
-      <h2>Complete</h2>
+      <h2>Celebrating Your Completed BuddyUps</h2>
+      <p>Each completed BuddyUp is a testament to your dedication and hard work. Here's a showcase of all the challenges you've conquered. Kudos to you and your buddies for these achievements!</p>
       <div class="table-container">
         <table class="table is-hoverable is-fullwidth is-striped">
           <thead>
@@ -131,7 +142,8 @@
     <% end %>
 
     <% if @archive_bups %>
-      <h2 class="has-text-grey-light">Archived</h2>
+      <h2 class="has-text-grey-light">Your Archived BuddyUps</h2>
+      <p>This section holds the BuddyUps that didn't go as planned. It's a space for reflection and learning. Understand what didn't work and how you can approach future challenges differently.</p>
       <div class="table-container">
         <table class="table is-hoverable is-fullwidth is-striped has-text-grey-light">
           <thead>
