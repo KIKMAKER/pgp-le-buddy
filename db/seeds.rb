@@ -8,4 +8,6 @@ puts "Starting database seed..."
 puts "Current environment is: #{Rails.env.downcase}"
 puts ""
 
-load(Rails.root.join( 'db', 'seeds', "#{Rails.env.downcase}.rb"))
+load(Rails.root.join( 'db', 'seeds', "development.rb"))
+
+# load(Rails.root.join( 'db', 'seeds', "#{Rails.env.downcase}.rb"))
