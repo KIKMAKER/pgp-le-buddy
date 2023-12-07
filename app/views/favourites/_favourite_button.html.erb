@@ -1,4 +1,4 @@
 <turbo-frame id=<%= buddy_up.id %> loading="lazy">
   <% Favourite.where(buddy_up: , profile: @profile).empty? ? icon="⭐️" : icon="🌟" %>
-  <%= link_to "#{icon} #{buddy_up.favourites.count}", favourites_path(bu: buddy_up.id), class: "card-footer-item" %>
+  <%= button_to "#{icon} #{buddy_up.favourites.count}", favourites_path(bu: buddy_up.id), class: "card-footer-item" %>
 </turbo-frame>
