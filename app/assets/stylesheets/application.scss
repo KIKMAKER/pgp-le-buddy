@@ -14,15 +14,18 @@
  *= require_self
  */
 
-@import "bulma";
-@import "font-awesome";
 
-// Fonts
-@import "fonts";
+ @import "bulma";
+ @import "font-awesome";
 
-// CSS partials
-@import "components/index";
-@import "pages/index";
+ // Fonts
+ @import "fonts";
+
+ // CSS partials
+ @import "components/index";
+ @import "pages/index";
+ // @import "bulma_overrides/my-bulma-theme";
+ $navbar-colors: #0E4749;
 
 // Application-wide CSS (will override the above)
 body {
