@@ -14,8 +14,8 @@
           <tr>
             <td class="td-name"><%= bu.name %></td>
             <td class="td"><%= bu.user.name %></td>
-            <td class="td"><%= button_to "Remove", favourite_path(bu), method: :delete, class: "button is-danger is-light is-small" %></td>
-            <td class="td"><%= link_to "View", buddy_up_path(bu), class: "button is-info is-light is-small" %></td>
+            <td class="td"><%= button_to "Remove", favourite_path(bu), method: :delete, class: "button is-danger  is-small" %></td>
+            <td class="td"><%= link_to "View", buddy_up_path(bu), class: "button is-info  is-small" %></td>
           </tr>
         <% end %>
       </tbody>
