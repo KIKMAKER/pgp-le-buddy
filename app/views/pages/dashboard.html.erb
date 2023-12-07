@@ -1,10 +1,18 @@
 <section class="content m-6">
-  <div class="container is-max-desktop">
-    <h1 class="title">Welcome to Your BuddyUp Hub!</h1>
-    <p>This is your personal space to track and manage all your collaborative learning journeys. Here, you can witness your progress, view your active BuddyUps, and even dive into some that you might have missed out on. Let's make learning more interactive and fun together!</p>
+  <div class="container is-max-desktop is-flex">
+    <div class="is-flex-grow-1">
+        <h1 class="title">Welcome to Your BuddyUp Hub!</h1>
+        <p>This is your personal space to track and manage all your collaborative learning journeys. Here, you can witness your progress, view your active BuddyUps, and even dive into some that you might have missed out on. Let's make learning more interactive and fun together!</p>
     <h2 class="mb-3">
       Your Progress and Statistics
     </h2>
+    </div>
+    <div>
+      <%= link_to "Create new BuddyUp",
+                    new_buddy_up_path(source: "dashboard"),
+                    class: "button is-primary"
+      %>
+    </div>
   </div>
 </section>
 

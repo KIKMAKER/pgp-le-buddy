@@ -1,0 +1,65 @@
+<section class="content m-6">
+  <div class="container is-max-desktop">
+    <h1>New BuddyUp</h1>
+    <p>Create a new BuddyUp offer for others to join you</p>
+  </div>
+</section>
+
+<section class="content m-6">
+  <div class="container is-max-desktop">
+    <%= simple_form_for @buddy_up do |f| %>
+      <%= hidden_field_tag(:source, @source) %>
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <%= f.input_field :name, class: "input" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Description</label>
+        <div class="control">
+          <%= f.input_field :description, class: "input" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Availability</label>
+        <div class="control">
+          <%= f.input_field :availability, class: "input" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Challenge</label>
+        <div class="control">
+          <div class="select">
+            <%= f.association :challenge, include_blank: false, label: false, wrapper: false %>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <%= f.input_field :auto_match %> Auto match
+          </label>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <%= f.button :submit, class: "button is-link" %>
+        </div>
+        <div class="control">
+          <% if @source == "buddy_up_index" %>
+            <%= link_to "Cancel", buddy_ups_path, class: "button is-link is-light" %>
+          <% elsif @source == "dashboard" %>
+            <%= link_to "Cancel", buddy_ups_path, class: "button is-link is-light" %>
+          <% end %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</section>
