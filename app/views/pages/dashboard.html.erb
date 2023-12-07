@@ -79,7 +79,7 @@
                 <td class="td"><%= bu.requests.count %></td>
                 <td class="td"><%= bu.favourites.count %></td>
                 <td class="td"><%= bu.requests.where(status: :approved).count %></td>
-                <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button is-info is-light is-small" %></td>
+                <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button is-info  is-small" %></td>
               </tr>
             <% end %>
           </tbody>
@@ -110,11 +110,11 @@
                 <% if re.status == "approved" %>
                   <td class="td"><span class="has-text-primary-dark has-text-weight-semibold"><%= re.status.capitalize %><span></td>
                 <% elsif re.status == "denied" %>
-                  <td class="td"><span class="has-text-danger-dark has-text-weight-semibold"><%= re.status.capitalize %><span></td>
+                  <td class="td"><span class="has-text-danger-dark "><%= re.status.capitalize %><span></td>
                 <% else %>
                   <td class="td"><%= re.status.capitalize %></td>
                 <% end %>
-                <td class="td"><%= link_to "View", buddy_up_path(re.buddy_up), class: "button is-info is-light is-small" %></td>
+                <td class="td"><%= link_to "View", buddy_up_path(re.buddy_up), class: "button is-info  is-small" %></td>
               </tr>
             <% end %>
           </tbody>
@@ -147,8 +147,8 @@
                 <% else %>
                   <td class="td"><%= re.status.capitalize %></td>
                 <% end %>
-                <td class="td"><%= button_to "Accept", request_path(re, action_to_take: "approved"), method: :patch, class: "button is-info is-light is-small" %></td>
-                <td class="td"><%= button_to "Reject", request_path(re, action_to_take: "denied"), method: :patch, class: "button is-info is-light is-small" %></td>
+                <td class="td"><%= button_to "Accept", request_path(re, action_to_take: "approved"), method: :patch, class: "button is-info is-small" %></td>
+                <td class="td"><%= button_to "Reject", request_path(re, action_to_take: "denied"), method: :patch, class: "button   is-small" %></td>
               </tr>
             <% end %>
           </tbody>
@@ -175,7 +175,7 @@
                 <td class="td"><%= bu.requests.count %></td>
                 <td class="td"><%= bu.favourites.count %></td>
                 <td class="td"><%= bu.requests.where(status: :approved).count %></td>
-                <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button is-info is-light is-small" %></td>
+                <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button is-info  is-small" %></td>
               </tr>
             <% end %>
           </tbody>
@@ -200,7 +200,7 @@
                 <td class="td-name"><%= bu.name %></td>
                 <td class="td"><%= bu.requests.count %></td>
                 <td class="td"><%= bu.favourites.count %></td>
-                <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button is-light is-small" %></td>
+                <td class="td"><%= link_to "View / Edit", buddy_up_path(bu), class: "button  is-small" %></td>
               </tr>
             <% end %>
           </tbody>
