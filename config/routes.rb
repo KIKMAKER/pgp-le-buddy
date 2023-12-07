@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get "/dashboard", to: "pages#dashboard"
   resources :challenges, except: %i[ edit new create destroy ]
   resources :app_feedbacks, only: %i[ new create ]
-  resources :buddy_ups, only: %i[ index show ]
+  resources :buddy_ups, only: %i[ index show new create ]
   resources :profiles, only: %i[ show new create edit update ]
   resources :social_links, only: :create
   resources :requests

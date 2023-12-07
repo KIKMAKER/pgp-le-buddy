@@ -6,7 +6,7 @@ class BuddyUp < ApplicationRecord
   has_many :favourites, dependent: :destroy
   has_one :user, through: :profile
 
-  validates :name, :description, :challenge, :profile, presence: true
+  validates :name, :description, :profile, presence: true
   enum :status, { active: 0, archived: 1, complete: 2 }, default: :active
 
   # Set up pg_search
