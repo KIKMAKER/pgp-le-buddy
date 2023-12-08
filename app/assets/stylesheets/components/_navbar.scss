@@ -9,17 +9,49 @@
   background-color: #0E4749;
 }
 
-.navbar-burger {
-  color: #4a4a4a;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: block;
-  height: 4.25rem;
-  position: relative;
-  width: 3.25rem;
-  margin-left: auto;
-}
+
+// .navbar-burger {
+//   color: #4a4a4a;
+//   -moz-appearance: none;
+//   -webkit-appearance: none;
+//   appearance: none;
+//   background: none;
+//   border: none;
+//   cursor: pointer;
+//   display: block;
+//   height: 4.25rem;
+//   position: relative;
+//   width: 3.25rem;
+//   margin-left: auto;
+// }
+
+// __ ** POTENTIAL HOVER CHANGE? **https://www.w3schools.com/cssref/sel_hover.php
+// a:hover {
+//   background-color: yellow;
+// }
+// :hover {
+//   css declarations;
+// }
+// p:hover, h1:hover, a:hover {
+//   background-color: yellow;
+// }
+// /* unvisited link */
+// a:link {
+//   color: green;
+// }
+// or
+// /* visited link */
+// a:visited {
+//   color: green;
+// }
+
+// /* mouse over link */
+// a:hover {
+//   color: red;
+// }
+
+// /* selected link */
+// a:active {
+//   color: yellow;
+// }
+// __
